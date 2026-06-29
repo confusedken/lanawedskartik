@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lalana & Kartik Wedding</title>
+
+  <script>
+    // If arriving via a "Home" nav link (index.html#main), skip the splash
+    // instantly so Home always lands on the welcome page, not the video.
+    if (window.location.hash === "#main") {
+      document.documentElement.classList.add("skip-splash");
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ============ SPLASH SCREEN ============ -->
+<section class="splash" id="splash">
+  <video id="heroVideo" class="bg-video" autoplay muted loop playsinline>
+    <source src="assets/ganapati-video.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="splash-content">
+    <div class="mantra-wrapper">
+      <img src="assets/om-ganapati.png" class="mantra-img" alt="Om Ganapataye Namah">
+    </div>
+
+    <button id="enterBtn" class="royal-image-btn">
+      <img src="assets/royal-button-frame-v2.png" alt="" class="button-frame-img"/>
+      <span class="button-text">Enter Our Wedding</span>
+    </button>
+  </div>
+
+  <div id="soundPrompt" class="sound-prompt">♫ Sacred Audio</div>
+</section>
+
+<!-- ============ MAIN WELCOME SITE ============ -->
+<div class="site welcome-active">
+
+  <header class="site-nav">
+    <div class="brand-monogram"><img src="assets/emblem.png" alt="L K monogram"></div>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#main" class="active">Home</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a href="events.html">Events</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a href="faqs.html">FAQs</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="nav-rule"><img src="assets/small_symbol.png" alt=""></span>
+  </header>
+
+  <section class="welcome-hero">
+    <div class="welcome-hero-inner">
+      <div class="welcome-text">
+        <div class="ornament cap"><img src="assets/welcome_bar.png" alt=""></div>
+        <h1>Welcome<small>TO OUR WEDDING</small></h1>
+        <div class="ornament sub"><img src="assets/welcome_below_bar.png" alt=""></div>
+        <p class="blessing">
+          With the blessings of our families, the grace of the divine,
+          and hearts filled with love, we invite you to celebrate
+          this beautiful beginning with us.
+        </p>
+        <div class="ornament mid"><img src="assets/main_bar.png" alt=""></div>
+        <p class="blessing">
+          May this day be filled with tradition, joy, sacred moments,
+          and memories that stay with us forever.
+        </p>
+        <div class="ornament pre-name"><img src="assets/Lalana_above.png" alt=""></div>
+        <div class="welcome-names">Lalana &amp; Kartik</div>
+        <div class="ornament post-name"><img src="assets/Lalana_below.png" alt=""></div>
+        <div class="welcome-date">27<sup>th</sup> August 2026</div>
+        <div class="ornament post-date"><img src="assets/date_below.png" alt=""></div>
+      </div>
+      <div class="welcome-image">
+        <img src="assets/our_pic.png" alt="Lalana and Kartik">
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    With love, Lalana &amp; Kartik &mdash; 27th August 2026
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
