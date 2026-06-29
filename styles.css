@@ -267,6 +267,12 @@ html.skip-splash .splash {
   display: block;
 }
 
+/* Mobile single-scroll container — hidden entirely on desktop;
+   shown and populated via JS only within the mobile breakpoint. */
+.mobile-only {
+  display: none;
+}
+
 /* HERO / WELCOME BANNER — built from real, responsive HTML (no baked-in text) */
 .welcome-hero {
   position: relative;
@@ -906,26 +912,17 @@ html.skip-splash .splash {
   .site-nav { padding: 16px 18px; justify-content: flex-end; }
   .brand-monogram { width: 84px; height: 84px; top: 8px; left: 14px; }
 
-  .nav-toggle { display: flex; top: 22px; right: 18px; }
+  /* Single continuous scroll on mobile — no hamburger / page nav needed */
+  .nav-toggle { display: none; }
+  .nav-links { display: none; }
 
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: 70%;
-    background: rgba(20, 8, 5, 0.96);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    transition: right 0.35s ease;
+  /* Sections fetched from the other pages and stitched into one scroll */
+  .mobile-only { display: block; }
+
+  .mobile-page-section {
+    position: relative;
   }
 
-  .nav-links.open { right: 0; }
-  .nav-links a { color: var(--gold-pale); }
-  .nav-links a.active { color: var(--gold-light); }
-  .nav-links a::after { background: var(--gold); }
   .nav-links .sep { display: none; }
 
   .page-hero { min-height: 78vh; background-position: center top; }

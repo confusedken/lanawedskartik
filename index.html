@@ -15,7 +15,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&family=Noto+Serif+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css"/>
 </head>
@@ -94,6 +94,18 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ MOBILE SINGLE-SCROLL PAGES ============
+       On mobile, the other pages are fetched and stitched in here, in
+       order, so the whole site is one continuous scroll (like the Apple
+       site) instead of separate pages behind a hamburger menu. Desktop
+       never sees this — it stays a normal multi-page nav experience. -->
+  <div id="mobile-pages" class="mobile-only">
+    <div class="mobile-page-section" data-src="events.html" data-label="Events"></div>
+    <div class="mobile-page-section" data-src="contact.html" data-label="Contact Us"></div>
+    <div class="mobile-page-section" data-src="our-story.html" data-label="Our Story"></div>
+    <div class="mobile-page-section" data-src="faqs.html" data-label="FAQs"></div>
+  </div>
 
   <footer class="site-footer">
     With love, Lalana &amp; Kartik &mdash; 27th August 2026

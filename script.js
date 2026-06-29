@@ -57,18 +57,66 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---------- SCROLL REVEAL (used on Our Story page) ----------
-  const revealEls = document.querySelectorAll(".reveal");
-  if (revealEls.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
+  // ---------- SCROLL REVEAL ----------
+  // Reusable so it can be re-run after mobile pages are stitched in below.
+  let revealObserver = null;
+  function initReveal() {
+    if (!revealObserver) {
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
+    }
+    document.querySelectorAll(".reveal:not(.visible)").forEach((el) => {
+      revealObserver.observe(el);
+    });
+  }
+  initReveal();
 
-    revealEls.forEach((el) => observer.observe(el));
+  // ---------- MOBILE SINGLE-SCROLL PAGE STITCHING ----------
+  // On mobile, Events / Contact Us / Our Story / FAQs are fetched and their
+  // #page-content is dropped into the home page so the whole site is one
+  // continuous scroll, with no hamburger menu needed. Desktop is untouched.
+  const mobilePages = document.getElementById("mobile-pages");
+
+  if (mobilePages) {
+    const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+
+    const loadMobilePages = () => {
+      if (mobilePages.dataset.loaded || !isMobile()) return;
+      mobilePages.dataset.loaded = "true";
+
+      const sections = Array.from(mobilePages.querySelectorAll(".mobile-page-section"));
+
+      sections.reduce((chain, section) => {
+        return chain.then(() =>
+          fetch(section.dataset.src)
+            .then((res) => (res.ok ? res.text() : null))
+            .then((html) => {
+              if (!html) return;
+              const doc = new DOMParser().parseFromString(html, "text/html");
+              const content = doc.getElementById("page-content");
+              if (content) {
+                section.innerHTML = content.innerHTML;
+              }
+            })
+            .catch((err) => {
+              console.log("Could not load section:", section.dataset.src, err);
+            })
+        );
+      }, Promise.resolve()).then(() => {
+        // Newly injected sections bring their own .reveal elements
+        initReveal();
+      });
+    };
+
+    if (isMobile()) {
+      loadMobilePages();
+    }
+    window.addEventListener("resize", loadMobilePages);
   }
 });
