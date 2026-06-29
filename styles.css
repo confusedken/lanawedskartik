@@ -935,11 +935,29 @@ html.skip-splash .splash {
   .welcome-hero {
     height: auto;
     min-height: 100vh;
-    padding: 150px 6vw 50px;
-    background-position: center 8%;
+    padding: 150px 6vw 60px;
     overflow: visible;
+    background-image: none;
+    position: relative;
+    isolation: isolate;
   }
+
+  /* Background lives on a viewport-fixed layer so it never stretches/zooms
+     as the stacked mobile content grows taller than one screen. */
+  .welcome-hero::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('arch_background.png');
+    background-size: cover;
+    background-position: center 18%;
+    background-color: #f3e3bd;
+  }
+
   .welcome-hero-inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -950,8 +968,12 @@ html.skip-splash .splash {
   .welcome-text {
     position: static;
     max-width: 100%;
-    padding-left: 0;
+    padding: 24px 18px;
     text-align: center;
+    background: rgba(255, 250, 235, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    border-radius: 22px;
+    box-shadow: 0 14px 34px rgba(56, 18, 9, 0.2);
   }
   .welcome-text h1,
   .welcome-text h1 small { text-align: center; }
@@ -967,7 +989,16 @@ html.skip-splash .splash {
     transform: none;
     order: -1;
   }
-  .welcome-image img { height: auto; max-width: 200px; max-height: none; }
+  .welcome-image img {
+    height: auto;
+    max-width: 190px;
+    max-height: none;
+    background: #fffaf0;
+    padding: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    border-radius: 16px;
+    box-shadow: 0 14px 30px rgba(56, 18, 9, 0.28);
+  }
 
   .ornament.cap img { width: 140px; }
   .ornament.sub img { width: 150px; }
