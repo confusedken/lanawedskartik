@@ -988,13 +988,9 @@ html.skip-splash .splash {
   }
   .welcome-image img {
     height: auto;
-    max-width: 190px;
+    max-width: 220px;
     max-height: none;
-    background: #fffaf0;
-    padding: 10px;
-    border: 1px solid rgba(212, 175, 55, 0.55);
-    border-radius: 16px;
-    box-shadow: 0 14px 30px rgba(56, 18, 9, 0.28);
+    filter: drop-shadow(0 16px 22px rgba(40, 18, 10, 0.45));
   }
 
   .ornament.cap img { width: 140px; }
