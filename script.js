@@ -1,11 +1,6 @@
-// ---------- SPLASH SCREEN ----------
 document.addEventListener("DOMContentLoaded", () => {
-  const splash = document.getElementById("splash");
-  const video = document.getElementById("heroVideo");
-  const soundPrompt = document.getElementById("soundPrompt");
-  const enterBtn = document.getElementById("enterBtn");
 
-  // ---------- SOUND MODAL → SPLASH VIDEO ----------
+  // ---------- SOUND MODAL + SPLASH ----------
   const soundModal = document.getElementById("soundModal");
   const soundYes   = document.getElementById("soundYes");
   const soundNo    = document.getElementById("soundNo");
@@ -13,57 +8,62 @@ document.addEventListener("DOMContentLoaded", () => {
   const video      = document.getElementById("heroVideo");
   const enterBtn   = document.getElementById("enterBtn");
 
-  // Only show the modal on the home page (skip-splash class = arriving via nav)
-  if (soundModal && !document.documentElement.classList.contains("skip-splash")) {
-    // Keep video muted and paused until user chooses
-    if (video) { video.muted = true; video.pause(); }
-    document.body.style.overflow = "hidden";
+  const skipSplash = document.documentElement.classList.contains("skip-splash");
 
-    const dismissModal = (withSound) => {
-      soundModal.classList.add("hidden");
-      setTimeout(() => { soundModal.style.display = "none"; }, 400);
-      if (video) {
-        video.muted = !withSound;
-        video.volume = 1;
-        video.play().catch(() => {});
-      }
-    };
+  if (soundModal) {
+    if (skipSplash) {
+      // Arrived via Home nav link — skip modal + splash entirely
+      soundModal.style.display = "none";
+      if (splash) splash.style.display = "none";
+      if (video)  { video.pause(); video.muted = true; }
+    } else {
+      // Normal first visit — show modal, video plays muted underneath
+      // (browser autoplay keeps it running muted; we just control sound)
+      const dismissModal = (withSound) => {
+        // Instantly remove modal — no fade delay that could confuse user
+        soundModal.style.display = "none";
+        document.body.style.overflow = "";
 
-    if (soundYes) soundYes.addEventListener("click", () => dismissModal(true));
-    if (soundNo)  soundNo.addEventListener("click",  () => dismissModal(false));
+        if (video) {
+          if (withSound) {
+            video.muted = false;
+            video.volume = 1;
+            video.play().catch(() => { video.muted = true; }); // fallback if browser blocks
+          } else {
+            video.muted = true;
+            video.play().catch(() => {});
+          }
+        }
+      };
 
-  } else if (soundModal) {
-    // Skip-splash path: hide modal immediately
-    soundModal.style.display = "none";
-    if (video) { video.pause(); video.muted = true; }
-    document.body.style.overflow = "auto";
+      if (soundYes) soundYes.addEventListener("click", () => dismissModal(true));
+      if (soundNo)  soundNo.addEventListener("click",  () => dismissModal(false));
+    }
   }
 
-  // Enter Our Wedding button — dismiss splash + stop video
+  // "Enter Our Wedding" — hide splash + stop video
   if (enterBtn) {
     enterBtn.addEventListener("click", () => {
       if (splash) splash.classList.add("hidden");
       if (video)  { video.pause(); video.muted = true; }
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     });
   }
 
   // ---------- MOBILE NAV TOGGLE ----------
   const navToggle = document.getElementById("navToggle");
-  const navLinks = document.getElementById("navLinks");
+  const navLinks  = document.getElementById("navLinks");
 
   if (navToggle && navLinks) {
     navToggle.addEventListener("click", () => {
       navLinks.classList.toggle("open");
     });
-
     navLinks.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => navLinks.classList.remove("open"));
     });
   }
 
   // ---------- SCROLL REVEAL ----------
-  // Reusable so it can be re-run after mobile pages are stitched in below.
   let revealObserver = null;
   function initReveal() {
     if (!revealObserver) {
@@ -83,9 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
 
   // ---------- MOBILE SINGLE-SCROLL PAGE STITCHING ----------
-  // On mobile, Events / Contact Us / Our Story / FAQs are fetched and their
-  // #page-content is dropped into the home page so the whole site is one
-  // continuous scroll, with no hamburger menu needed. Desktop is untouched.
   const mobilePages = document.getElementById("mobile-pages");
 
   if (mobilePages) {
@@ -105,23 +102,36 @@ document.addEventListener("DOMContentLoaded", () => {
               if (!html) return;
               const doc = new DOMParser().parseFromString(html, "text/html");
               const content = doc.getElementById("page-content");
-              if (content) {
-                section.innerHTML = content.innerHTML;
-              }
+              if (content) section.innerHTML = content.innerHTML;
             })
-            .catch((err) => {
-              console.log("Could not load section:", section.dataset.src, err);
-            })
+            .catch((err) => console.log("Could not load section:", section.dataset.src, err))
         );
       }, Promise.resolve()).then(() => {
-        // Newly injected sections bring their own .reveal elements
         initReveal();
       });
     };
 
-    if (isMobile()) {
-      loadMobilePages();
-    }
+    if (isMobile()) loadMobilePages();
     window.addEventListener("resize", loadMobilePages);
   }
+
+  // ---------- HOME HOTSPOT NAV ALIGNMENT ----------
+  const welcomeArt   = document.querySelector(".welcome-art");
+  const hotspotLayer = document.querySelector(".desktop-hotspots");
+
+  if (welcomeArt && hotspotLayer) {
+    const alignHotspots = () => {
+      const container = welcomeArt.parentElement.getBoundingClientRect();
+      const img = welcomeArt.getBoundingClientRect();
+      hotspotLayer.style.left   = (img.left - container.left) + "px";
+      hotspotLayer.style.top    = (img.top - container.top) + "px";
+      hotspotLayer.style.width  = img.width + "px";
+      hotspotLayer.style.height = img.height + "px";
+    };
+    if (welcomeArt.complete) alignHotspots();
+    else welcomeArt.addEventListener("load", alignHotspots);
+    window.addEventListener("resize", alignHotspots);
+    window.addEventListener("orientationchange", alignHotspots);
+  }
+
 });
