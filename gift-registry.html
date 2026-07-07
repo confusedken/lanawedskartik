@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gift Registry | Lalana & Kartik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&family=Noto+Serif+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="site">
+
+  <header class="site-nav">
+    <div class="brand-monogram"><img src="emblem.png" alt="L K monogram"></div>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#main">Home</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a href="events.html">Events</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a href="rsvp.html">RSVP</a></li>
+        <li class="sep">&#10022;</li>
+        <li><a class="active" href="gift-registry.html">Gift Registry</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="nav-rule"></span>
+  </header>
+
+  <div id="page-content">
+
+  <section class="page-hero subpage">
+    <div class="subpage-title">
+      <h1>Gift Registry</h1>
+      <p class="subpage-script">Your love is our greatest treasure</p>
+    </div>
+  </section>
+
+  <main class="gift-page">
+
+    <div class="gift-thankyou-art reveal">
+      <img src="gift-thankyou.jpg" alt="ధన్యవాదాలు — Thank You">
+    </div>
+
+    <div class="gift-intro reveal">
+      <div class="section-ornament"><img src="welcome_bar.png" alt=""></div>
+      <h2 class="gift-heading">Your Presence is the Greatest Gift</h2>
+      <div class="section-ornament"><img src="welcome_below_bar.png" alt=""></div>
+      <p>
+        Having you with us on this beautiful day is a blessing beyond words.
+        Your love, your laughter, and the memories we will create together
+        mean more to us than anything else in this world.
+      </p>
+      <p>
+        If you have travelled from far to be with us &mdash; you have already
+        given us the most precious gift of all. <em>Thank you.</em>
+      </p>
+    </div>
+
+    <div class="gift-cards-wrap reveal">
+      <div class="section-ornament" style="margin-bottom:28px;"><img src="main_bar.png" alt=""></div>
+      <p class="gift-subheading">
+        For those who have so kindly asked, here are our details &mdash;
+        with all our love and gratitude.
+      </p>
+
+      <div class="gift-cards">
+
+        <div class="gift-card">
+          <div class="gift-card-icon">💛</div>
+          <p class="gift-card-label">Bride</p>
+          <h3 class="gift-card-name">Lalana</h3>
+          <div class="gift-divider"></div>
+          <div class="gift-method-row">
+            <div class="gift-method-item">
+              <p class="gift-method">Zelle</p>
+              <p class="gift-detail">+1 (312) 358-4503</p>
+              <button class="gift-copy-btn" onclick="copyText('+13123584503', this)">Copy Number</button>
+            </div>
+            <div class="gift-method-sep"></div>
+            <div class="gift-method-item">
+              <p class="gift-method">PayPal</p>
+              <p class="gift-detail">slalana.1993<br>@gmail.com</p>
+              <button class="gift-copy-btn" onclick="copyText('slalana.1993@gmail.com', this)">Copy Email</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-card-icon">💛</div>
+          <p class="gift-card-label">Groom</p>
+          <h3 class="gift-card-name">Kartik</h3>
+          <div class="gift-divider"></div>
+          <p class="gift-method">Venmo</p>
+          <p class="gift-detail">@Kartik-Kanduri</p>
+          <button class="gift-copy-btn" onclick="copyText('@Kartik-Kanduri', this)">Copy Handle</button>
+        </div>
+
+      </div>
+
+      <p class="gift-note">
+        ధన్యవాదాలు &mdash; From the bottom of our hearts, thank you. 🙏
+      </p>
+    </div>
+
+  </main>
+
+  </div>
+
+  <footer class="site-footer">
+    With love, Lalana &amp; Kartik &mdash; 27th August 2026
+  </footer>
+</div>
+
+<script src="script.js"></script>
+<script>
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = "Copied ✓";
+      btn.style.background = "var(--maroon)";
+      btn.style.color = "var(--gold-pale)";
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = "";
+        btn.style.color = "";
+      }, 2000);
+    }).catch(() => {
+      prompt("Copy this:", text);
+    });
+  }
+</script>
+</body>
+</html>

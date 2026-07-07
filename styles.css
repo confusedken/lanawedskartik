@@ -356,6 +356,31 @@ html.skip-splash .splash {
   display: block;
 }
 
+/* NAMASTE GREETING */
+.namaste-greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.namaste-telugu {
+  font-family: 'Noto Serif Telugu', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--maroon);
+  letter-spacing: 0.04em;
+}
+
+.namaste-english {
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-top: 3px;
+}
+
 /* Mobile single-scroll container — hidden entirely on desktop;
    shown and populated via JS only within the mobile breakpoint. */
 .mobile-only {
@@ -1196,6 +1221,179 @@ html.skip-splash .splash {
   font-weight: 600;
 }
 
+/* =========================================================
+   GIFT REGISTRY PAGE
+========================================================= */
+.gift-page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 60px 32px 110px;
+  text-align: center;
+}
+
+.gift-thankyou-art {
+  max-width: 400px;
+  margin: 0 auto 50px;
+}
+
+.gift-thankyou-art img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 48px rgba(56,18,9,0.18);
+}
+
+.gift-intro {
+  margin-bottom: 60px;
+}
+
+.gift-heading {
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--maroon);
+  margin: 20px 0;
+}
+
+.gift-intro p {
+  font-size: 1.18rem;
+  line-height: 1.75;
+  color: #4a3526;
+  max-width: 600px;
+  margin: 0 auto 18px;
+}
+
+.gift-intro em {
+  font-style: italic;
+  color: var(--maroon);
+}
+
+.gift-cards-wrap {
+  padding: 36px 32px 42px;
+  background: rgba(255,246,224,0.88);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 26px;
+  box-shadow: 0 18px 42px rgba(56,18,9,0.12);
+}
+
+.gift-subheading {
+  font-size: 1.12rem;
+  line-height: 1.65;
+  color: #4a3526;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+
+.gift-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.gift-card {
+  background: #fffdf5;
+  border: 1px solid rgba(180,130,60,0.3);
+  border-radius: 18px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: box-shadow 0.2s;
+}
+
+.gift-card:hover {
+  box-shadow: 0 10px 28px rgba(56,18,9,0.15);
+}
+
+.gift-card-icon { font-size: 1.8rem; }
+
+.gift-card-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  font-weight: 600;
+}
+
+.gift-card-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.6rem;
+  color: var(--maroon);
+  line-height: 1;
+  margin: 4px 0;
+}
+
+.gift-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 8px auto;
+}
+
+.gift-method-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.gift-method-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.gift-method-sep {
+  width: 60%;
+  height: 1px;
+  background: rgba(180,130,60,0.25);
+  margin: 0 auto;
+}
+
+.gift-method {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+.gift-detail {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--maroon);
+  margin: 4px 0 12px;
+  letter-spacing: 0.5px;
+}
+
+.gift-copy-btn {
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--maroon);
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.gift-copy-btn:hover {
+  background: var(--maroon);
+  color: var(--gold-pale);
+}
+
+.gift-note {
+  font-family: 'Noto Serif Telugu', serif;
+  font-size: 1.1rem;
+  color: var(--maroon);
+  font-style: italic;
+}
+
 /* FOOTER */
 .site-footer {
   background: var(--maroon);
@@ -1323,6 +1521,11 @@ html.skip-splash .splash {
   .content p { font-size: 1.1rem; }
 
   .contact-grid { grid-template-columns: 1fr; }
+  .gift-cards { grid-template-columns: 1fr; }
+  .gift-page { padding: 50px 20px 80px; }
+  .gift-thankyou-art { max-width: 280px; margin-bottom: 36px; }
+  .namaste-telugu { font-size: 1.1rem; }
+  .namaste-english { font-size: 0.78rem; }
 
   .rsvp-page { padding: 50px 20px 80px; }
   .rsvp-container { padding: 26px 18px; border-radius: 22px; }
