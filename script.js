@@ -5,42 +5,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const soundPrompt = document.getElementById("soundPrompt");
   const enterBtn = document.getElementById("enterBtn");
 
-  // Only run splash logic on the home page (it exists only there)
-  if (splash) {
-    // Arrived via the Home nav link (#main) — splash is already hidden via
-    // CSS; also stop the video so it isn't silently playing in the background.
-    if (document.documentElement.classList.contains("skip-splash")) {
+  // ---------- SOUND MODAL → SPLASH VIDEO ----------
+  const soundModal = document.getElementById("soundModal");
+  const soundYes   = document.getElementById("soundYes");
+  const soundNo    = document.getElementById("soundNo");
+  const splash     = document.getElementById("splash");
+  const video      = document.getElementById("heroVideo");
+  const enterBtn   = document.getElementById("enterBtn");
+
+  // Only show the modal on the home page (skip-splash class = arriving via nav)
+  if (soundModal && !document.documentElement.classList.contains("skip-splash")) {
+    // Keep video muted and paused until user chooses
+    if (video) { video.muted = true; video.pause(); }
+    document.body.style.overflow = "hidden";
+
+    const dismissModal = (withSound) => {
+      soundModal.classList.add("hidden");
+      setTimeout(() => { soundModal.style.display = "none"; }, 400);
       if (video) {
-        video.pause();
-        video.muted = true;
+        video.muted = !withSound;
+        video.volume = 1;
+        video.play().catch(() => {});
       }
+    };
+
+    if (soundYes) soundYes.addEventListener("click", () => dismissModal(true));
+    if (soundNo)  soundNo.addEventListener("click",  () => dismissModal(false));
+
+  } else if (soundModal) {
+    // Skip-splash path: hide modal immediately
+    soundModal.style.display = "none";
+    if (video) { video.pause(); video.muted = true; }
+    document.body.style.overflow = "auto";
+  }
+
+  // Enter Our Wedding button — dismiss splash + stop video
+  if (enterBtn) {
+    enterBtn.addEventListener("click", () => {
+      if (splash) splash.classList.add("hidden");
+      if (video)  { video.pause(); video.muted = true; }
       document.body.style.overflow = "auto";
-    }
-
-    if (soundPrompt && video) {
-      soundPrompt.addEventListener("click", async () => {
-        try {
-          video.muted = false;
-          video.volume = 1;
-          await video.play();
-          soundPrompt.style.opacity = "0";
-          setTimeout(() => { soundPrompt.style.display = "none"; }, 300);
-        } catch (err) {
-          console.log("Audio could not start:", err);
-        }
-      });
-    }
-
-    if (enterBtn) {
-      enterBtn.addEventListener("click", () => {
-        splash.classList.add("hidden");
-        if (video) {
-          video.pause();
-          video.muted = true;
-        }
-        document.body.style.overflow = "auto";
-      });
-    }
+    });
   }
 
   // ---------- MOBILE NAV TOGGLE ----------
