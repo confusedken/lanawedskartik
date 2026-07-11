@@ -61,6 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => navLinks.classList.remove("open"));
     });
+    // Close if tapping outside
+    document.addEventListener("click", (e) => {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove("open");
+      }
+    });
   }
 
   // ---------- SCROLL REVEAL ----------

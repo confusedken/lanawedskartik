@@ -311,9 +311,13 @@ html.skip-splash .splash {
 }
 
 .nav-links a .nav-icon {
-  font-size: 1rem;
-  line-height: 1;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
   opacity: 0.85;
+  flex-shrink: 0;
+  color: inherit;
 }
 
 .nav-links a::after {
@@ -1312,21 +1316,36 @@ html.skip-splash .splash {
   .button-text { font-size: 1.2rem; }
   .sound-prompt { font-size: 0.85rem; padding: 8px 16px; bottom: 16px; right: 16px; }
 
-  /* Single continuous scroll on mobile — no hamburger / page nav needed */
-  .nav-toggle { display: none; }
-  .nav-links { display: none; }
-
-  /* Sections fetched from the other pages and stitched into one scroll */
-  .mobile-only { display: block; }
-
-  .mobile-page-section {
+  /* ---- HOMEPAGE MOBILE ---- */
+  /* Show left parchment content area of the landscape image on portrait screens */
+  .home-screen {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 600px;
+    overflow: hidden;
+    background: #062445;
     position: relative;
   }
+  .homepage-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 18% center;  /* show left parchment+text panel */
+  }
+  .desktop-hotspots { display: none; }
+  /* Remove floating bottom pill nav — subpages open normally */
+  .mobile-home-nav { display: none; }
 
+  /* ---- MOBILE SINGLE-SCROLL (desktop pattern still works for tabs) ---- */
+  .mobile-only { display: block; }
+  .mobile-page-section { position: relative; }
+
+  /* ---- SUBPAGE NAV ---- */
   .site-nav {
     height: 56px;
-    padding: 0 16px;
-    justify-content: flex-end;
+    padding: 0 56px 0 70px;
+    justify-content: center;
     background: #062445;
   }
   .brand-monogram {
@@ -1337,61 +1356,41 @@ html.skip-splash .splash {
     transform: translateY(-50%);
   }
   .nav-links { display: none; }
-  .nav-toggle { display: flex; right: 16px; }
+  .nav-toggle {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+  }
+  /* Mobile slide-in nav drawer */
+  .nav-links.open {
+    display: flex;
+    position: fixed;
+    top: 56px;
+    left: 0; right: 0;
+    background: #062445;
+    border-bottom: 2px solid #c9a84c;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 8px 0 16px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .nav-links.open .sep { display: none; }
+  .nav-links.open a {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-links.open a:last-child { border-bottom: none; }
 
   .page-hero { min-height: 78vh; background-position: center top; padding-top: 56px; }
   .page-hero.subpage { min-height: 34vh; }
   .subpage-title h1 { font-size: 2.1rem; }
-
-  /* Homepage image: contain so full design is visible; background fills gaps */
-  .home-screen {
-    height: 100vh;
-    height: 100svh;
-    min-height: 500px;
-    background: #0b1630;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .homepage-art {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-  }
-  .desktop-hotspots { display: none; }
-
-  /* Mobile bottom navigation pill */
-  .mobile-home-nav {
-    position: fixed;
-    left: 10px;
-    right: 10px;
-    bottom: 14px;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    gap: 2px;
-    flex-wrap: wrap;
-    padding: 10px 12px;
-    border-radius: 14px;
-    background: rgba(11, 22, 48, 0.95);
-    border: 1px solid rgba(201, 168, 76, 0.55);
-    font-family: 'Cinzel', serif;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-
-  .mobile-home-nav a {
-    color: var(--gold-pale);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 4px 8px;
-    border-radius: 6px;
-    letter-spacing: 0.04em;
-  }
-
-  .mobile-home-nav a.active { color: var(--gold-light); }
 
   .content { padding: 60px 22px 70px; }
   .content h2 { font-size: 1.9rem; }
@@ -1401,8 +1400,6 @@ html.skip-splash .splash {
   .gift-cards { grid-template-columns: 1fr; }
   .gift-page { padding: 50px 20px 80px; }
   .gift-thankyou-art { max-width: 280px; margin-bottom: 36px; }
-  .namaste-telugu { font-size: 1.1rem; }
-  .namaste-english { font-size: 0.78rem; }
 
   .rsvp-page { padding: 50px 20px 80px; }
   .rsvp-container { padding: 26px 18px; border-radius: 22px; }
@@ -1413,21 +1410,36 @@ html.skip-splash .splash {
 
   .subpage-script { font-size: 1.4rem; }
   .events-hero .subpage-telugu { font-size: 1.4rem; }
-
   .events-page { padding: 50px 20px 80px; }
   .events-intro { font-size: 1.05rem; margin-bottom: 44px; }
-
   .event-chapter { margin-bottom: 56px; }
   .chapter-telugu { font-size: 1.25rem; }
   .chapter-rule img { width: 130px; }
-
-  .event-cards {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
+  .event-cards { grid-template-columns: 1fr; gap: 24px; }
   .event-art { aspect-ratio: 16 / 11; }
   .event-card-v2 h3 { font-size: 1.5rem; }
+
+  .story { padding-top: 80px; background-attachment: scroll; }
+  .story-block { padding: 38px 0; width: calc(100% - 36px); }
+  .story-grid,
+  .story-block.split,
+  .story-block.split.reverse { grid-template-columns: 1fr; gap: 26px; text-align: center; }
+  .story-block.split.reverse .story-photo,
+  .story-block.split .story-photo { order: -1; }
+  .story-copy, .finale-copy { padding: 26px 22px; border-radius: 20px; }
+  .story-copy .eyebrow, .finale-copy .eyebrow { font-size: 1rem; }
+  .story-copy p, .story-block.split .story-copy p, .story-block.intro .story-copy p { max-width: 100%; font-size: 1.05rem; }
+  .story-copy h1 { text-align: center; font-size: 2.6rem; }
+  .story-divider { justify-content: center; }
+  .story-divider img { width: 130px; }
+  .script-name { font-size: 3.4rem; }
+  .photo-frame.portrait { max-width: 320px; margin: 0 auto; }
+  .photo-frame.wide { aspect-ratio: 4 / 3; }
+  .section-ornament img { width: 160px; }
+  .finale-copy h2 { font-size: 2.4rem; }
+  .finale-copy p { font-size: 1.05rem; }
+  .closing-line { font-size: 2rem !important; }
+}
   .event-desc { font-size: 1rem; }
 
   .story { padding-top: 130px; background-attachment: scroll; }
