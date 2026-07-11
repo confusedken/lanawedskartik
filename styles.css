@@ -9,7 +9,7 @@
   --gold-light: #e8c96a;
   --gold-pale: #f5e6b8;
   --maroon: #0d1e45;
-  --cream: #fdf6e3;
+  --cream: #f4e8c1;
   --ink: #0a1530;
   --bronze: #1e5a9c;
   --navy: #0b1630;
@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  background: #000;
+  background: var(--navy);
   font-family: 'Cormorant Garamond', serif;
   color: var(--ink);
 }
@@ -61,7 +61,7 @@ html.skip-splash .splash {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgba(5, 12, 28, 0.78);
+  background: rgba(5, 14, 38, 0.85);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   transition: opacity 0.4s ease;
@@ -225,7 +225,7 @@ html.skip-splash .splash {
   bottom: 24px;
   right: 24px;
   z-index: 20;
-  background: rgba(18, 30, 72, 0.85);
+  background: rgba(5, 15, 45, 0.85);
   border: 1px solid var(--gold);
   color: var(--gold-pale);
   padding: 10px 18px;
@@ -265,10 +265,10 @@ html.skip-splash .splash {
 .brand-monogram {
   position: absolute;
   top: 50%;
-  left: 28px;
+  left: 12px;
   transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
+  width: 68px;
+  height: 46px;
   z-index: 51;
   display: block;
 }
@@ -400,9 +400,9 @@ html.skip-splash .splash {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-image: url('arch_background.png');
+  background-image: url('subpage_bg.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center 30%;
   display: flex;
   align-items: flex-end;
   padding-top: 70px;
@@ -410,14 +410,14 @@ html.skip-splash .splash {
 
 .page-hero.subpage {
   min-height: 46vh;
-  background-position: center 30%;
+  background-position: center 35%;
 }
 
 .page-hero.subpage::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(8, 18, 45, 0.5);
+  background: rgba(5, 14, 38, 0.55);
 }
 
 .subpage-title {
@@ -548,18 +548,18 @@ html.skip-splash .splash {
 }
 
 .event-card-v2 {
-  background: #fffaf0;
+  background: #fdf5dc;
   border: 1px solid rgba(212, 175, 55, 0.35);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(18, 30, 72, 0.1);
+  box-shadow: 0 16px 36px rgba(5, 15, 45, 0.1);
   display: flex;
   flex-direction: column;
 }
 
 .event-card-v2.featured {
   border: 1px solid rgba(212, 175, 55, 0.7);
-  box-shadow: 0 20px 46px rgba(18, 30, 72, 0.18);
+  box-shadow: 0 20px 46px rgba(5, 15, 45, 0.18);
 }
 
 .event-art {
@@ -685,8 +685,8 @@ html.skip-splash .splash {
 .story {
   background: var(--cream);
   background-image:
-    linear-gradient(rgba(240, 248, 255, 0.91), rgba(230, 242, 255, 0.94)),
-    url('arch_background.png');
+    linear-gradient(rgba(244, 232, 193, 0.95), rgba(244, 232, 193, 0.95)),
+    url('subpage_bg.jpg');
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
@@ -722,11 +722,11 @@ html.skip-splash .splash {
 .story-block.split.reverse .story-copy { order: 2; }
 
 .story-copy {
-  background: rgba(255, 246, 224, 0.82);
+  background: rgba(252, 242, 214, 0.9);
   border: 1px solid rgba(212, 175, 55, 0.45);
   border-radius: 26px;
   padding: clamp(28px, 4vw, 48px);
-  box-shadow: 0 20px 50px rgba(18, 30, 72, 0.14);
+  box-shadow: 0 20px 50px rgba(5, 15, 45, 0.14);
 }
 
 .story-copy .eyebrow {
@@ -785,7 +785,7 @@ html.skip-splash .splash {
   padding: 10px;
   border-radius: 18px;
   background: linear-gradient(135deg, var(--gold-light), var(--gold), #1a3562);
-  box-shadow: 0 22px 50px rgba(18, 30, 72, 0.25);
+  box-shadow: 0 22px 50px rgba(5, 15, 45, 0.25);
 }
 
 .photo-frame::before {
@@ -841,11 +841,11 @@ html.skip-splash .splash {
 .finale-copy {
   max-width: 760px;
   margin: 0 auto;
-  background: rgba(255, 246, 224, 0.82);
+  background: rgba(252, 242, 214, 0.9);
   border: 1px solid rgba(212, 175, 55, 0.45);
   border-radius: 26px;
   padding: clamp(32px, 5vw, 56px);
-  box-shadow: 0 20px 50px rgba(18, 30, 72, 0.14);
+  box-shadow: 0 20px 50px rgba(5, 15, 45, 0.14);
 }
 
 .finale-copy .eyebrow {
@@ -915,11 +915,11 @@ html.skip-splash .splash {
 }
 
 .rsvp-container {
-  background: rgba(255, 246, 224, 0.9);
+  background: rgba(252, 242, 214, 0.92);
   border: 1px solid rgba(212, 175, 55, 0.4);
   border-radius: 28px;
   padding: clamp(28px, 5vw, 52px);
-  box-shadow: 0 20px 50px rgba(18, 30, 72, 0.12);
+  box-shadow: 0 20px 50px rgba(5, 15, 45, 0.12);
 }
 
 .rsvp-form {
@@ -960,7 +960,7 @@ html.skip-splash .splash {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem;
   color: var(--ink);
-  background: #fffdf5;
+  background: #fef9e7;
   border: 1px solid rgba(180, 130, 60, 0.4);
   border-radius: 12px;
   outline: none;
@@ -990,11 +990,11 @@ html.skip-splash .splash {
   padding: 10px 14px;
   border: 1px solid rgba(180,130,60,0.3);
   border-radius: 10px;
-  background: #fffdf5;
+  background: #fef9e7;
   transition: background 0.2s, border-color 0.2s;
 }
 
-.check-item:hover { background: #fff8e6; border-color: var(--gold); }
+.check-item:hover { background: #fdf5dc; border-color: var(--gold); }
 
 .check-item input { accent-color: var(--maroon); }
 
@@ -1019,7 +1019,7 @@ html.skip-splash .splash {
   padding: 20px 14px;
   border: 2px solid rgba(180,130,60,0.3);
   border-radius: 16px;
-  background: #fffdf5;
+  background: #fef9e7;
   cursor: pointer;
   text-align: center;
   transition: all 0.2s ease;
@@ -1027,8 +1027,8 @@ html.skip-splash .splash {
 
 .radio-card:has(input:checked) {
   border-color: var(--maroon);
-  background: rgba(18, 30, 72, 0.06);
-  box-shadow: 0 4px 14px rgba(18,30,72,0.12);
+  background: rgba(5, 15, 45, 0.06);
+  box-shadow: 0 4px 14px rgba(5,15,45,0.12);
 }
 
 .radio-card input { display: none; }
@@ -1047,7 +1047,7 @@ html.skip-splash .splash {
   height: 40px;
   border-radius: 50%;
   border: 1px solid var(--gold);
-  background: #fffdf5;
+  background: #fef9e7;
   color: var(--maroon);
   font-size: 1.4rem;
   cursor: pointer;
@@ -1080,7 +1080,7 @@ html.skip-splash .splash {
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.25s, transform 0.2s;
-  box-shadow: 0 8px 24px rgba(18,30,72,0.25);
+  box-shadow: 0 8px 24px rgba(5,15,45,0.25);
 }
 .rsvp-submit:hover { background: #12336b; transform: translateY(-2px); }
 
@@ -1127,7 +1127,7 @@ html.skip-splash .splash {
 .gift-thankyou-art img {
   width: 100%;
   border-radius: 20px;
-  box-shadow: 0 20px 48px rgba(18,30,72,0.18);
+  box-shadow: 0 20px 48px rgba(5,15,45,0.18);
 }
 
 .gift-intro {
@@ -1159,7 +1159,7 @@ html.skip-splash .splash {
   background: rgba(255,246,224,0.88);
   border: 1px solid rgba(212,175,55,0.4);
   border-radius: 26px;
-  box-shadow: 0 18px 42px rgba(18,30,72,0.12);
+  box-shadow: 0 18px 42px rgba(5,15,45,0.12);
 }
 
 .gift-subheading {
@@ -1178,7 +1178,7 @@ html.skip-splash .splash {
 }
 
 .gift-card {
-  background: #fffdf5;
+  background: #fef9e7;
   border: 1px solid rgba(180,130,60,0.3);
   border-radius: 18px;
   padding: 28px 22px;
@@ -1190,7 +1190,7 @@ html.skip-splash .splash {
 }
 
 .gift-card:hover {
-  box-shadow: 0 10px 28px rgba(18,30,72,0.15);
+  box-shadow: 0 10px 28px rgba(5,15,45,0.15);
 }
 
 .gift-card-icon { font-size: 1.8rem; }
@@ -1493,10 +1493,10 @@ html.skip-splash .splash {
 
 .wedding-feature {
   grid-column: 1 / -1;
-  background: linear-gradient(180deg, #fffaf0 0%, #fff2d7 100%);
+  background: linear-gradient(180deg, #fdf5dc 0%, #fff2d7 100%);
   border: 1px solid rgba(212, 175, 55, 0.6);
   border-radius: 28px;
-  box-shadow: 0 22px 52px rgba(18, 30, 72, 0.16);
+  box-shadow: 0 22px 52px rgba(5, 15, 45, 0.16);
   overflow: hidden;
   padding: 34px 34px 36px;
   position: relative;
@@ -1652,7 +1652,7 @@ html.skip-splash .splash {
   border: 1px solid rgba(212, 175, 55, 0.28);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 12px 28px rgba(18, 30, 72, 0.1);
+  box-shadow: 0 12px 28px rgba(5, 15, 45, 0.1);
 }
 
 .ritual-image {
