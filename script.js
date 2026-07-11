@@ -116,22 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------- HOME HOTSPOT NAV ALIGNMENT ----------
-  const welcomeArt   = document.querySelector(".homepage-art");
-  const hotspotLayer = document.querySelector(".desktop-hotspots");
-
-  if (welcomeArt && hotspotLayer) {
-    const alignHotspots = () => {
-      const container = welcomeArt.parentElement.getBoundingClientRect();
-      const img = welcomeArt.getBoundingClientRect();
-      hotspotLayer.style.left   = (img.left - container.left) + "px";
-      hotspotLayer.style.top    = (img.top - container.top) + "px";
-      hotspotLayer.style.width  = img.width + "px";
-      hotspotLayer.style.height = img.height + "px";
-    };
-    if (welcomeArt.complete) alignHotspots();
-    else welcomeArt.addEventListener("load", alignHotspots);
-    window.addEventListener("resize", alignHotspots);
-    window.addEventListener("orientationchange", alignHotspots);
+  // No longer needed for desktop since the image uses width:100%; height:auto
+  // (no letterboxing) — hotspot layer is position:absolute inset:0 naturally.
+  // Keep a no-op so the code doesn't error if .homepage-art exists.
+  const welcomeArt = document.querySelector(".homepage-art");
+  if (welcomeArt) {
+    // nothing needed — % positions on .desktop-hotspots work directly
   }
 
 });
