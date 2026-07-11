@@ -5,13 +5,14 @@
 }
 
 :root {
-  --gold: #d4af37;
-  --gold-light: #f4d06f;
-  --gold-pale: #f8e7b0;
-  --maroon: #1a3562;
-  --cream: #fdf8ec;
-  --ink: #0f1f3d;
-  --bronze: #2659a0;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-pale: #f5e6b8;
+  --maroon: #0d1e45;
+  --cream: #fdf6e3;
+  --ink: #0a1530;
+  --bronze: #1e5a9c;
+  --navy: #0b1630;
 }
 
 html {
@@ -251,18 +252,23 @@ html.skip-splash .splash {
   right: 0;
   z-index: 50;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 22px 36px 16px;
-  background: linear-gradient(to bottom, rgba(220,232,250,0.92) 55%, rgba(253,248,236,0));
+  justify-content: center;
+  padding: 0 36px;
+  height: 70px;
+  background: var(--navy);
+  border-bottom: 2px solid var(--gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
 .brand-monogram {
   position: absolute;
-  top: 10px;
+  top: 50%;
   left: 28px;
-  width: 130px;
-  height: 130px;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
   z-index: 51;
   display: block;
 }
@@ -272,69 +278,50 @@ html.skip-splash .splash {
   height: 100%;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 4px 10px rgba(15,25,65,0.25));
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 6px;
 }
 
 .nav-links a {
-  color: var(--maroon);
-  font-size: 1.15rem;
-  letter-spacing: 0.5px;
-  font-weight: 600;
+  color: var(--gold-pale);
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 4px;
   position: relative;
-  padding-bottom: 4px;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, background 0.25s ease;
 }
 
 .nav-links .sep {
   color: var(--gold);
-  font-size: 0.85rem;
-  transform: translateY(-1px);
+  font-size: 0.75rem;
+  opacity: 0.6;
 }
 
 .nav-links a::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 2px;
-  background: var(--maroon);
+  left: 14px; right: 14px; bottom: 2px;
+  height: 1px;
+  background: var(--gold);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;
 }
 
+.nav-links a:hover { color: var(--gold-light); }
 .nav-links a:hover::after,
-.nav-links a.active::after {
-  transform: scaleX(1);
-}
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--gold-light); }
 
-.nav-links a.active { color: var(--maroon); }
-
-.nav-rule {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  margin: 10px auto 0;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0.85;
-}
-
-.nav-rule img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 34px;
-  height: 34px;
-  display: block;
-}
+.nav-rule { display: none; }
 
 .nav-toggle {
   display: none;
@@ -345,30 +332,16 @@ html.skip-splash .splash {
   cursor: pointer;
   z-index: 60;
   position: absolute;
-  top: 32px;
-  right: 24px;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
 }
 
 .nav-toggle span {
-  width: 28px;
+  width: 26px;
   height: 2px;
-  background: var(--maroon);
+  background: var(--gold-pale);
   display: block;
-}
-
-/* NAMASTE GREETING */
-.namaste-greeting {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 8px;
-}
-
-.namaste-single {
-  font-family: 'Noto Serif Telugu', 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--maroon);
-  letter-spacing: 0.06em;
 }
 
 /* Mobile single-scroll container — hidden entirely on desktop;
@@ -377,126 +350,47 @@ html.skip-splash .splash {
   display: none;
 }
 
-/* HERO / WELCOME BANNER — built from real, responsive HTML (no baked-in text) */
-.welcome-hero {
+/* =========================================================
+   HOME SCREEN — full-width flattened image with hotspot nav
+========================================================= */
+.home-screen {
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 680px;
-  background-image: url('arch_background.png');
-  background-size: cover;
-  background-position: center center;
-  padding: 142px 0 20px;
-  display: flex;
-  align-items: center;
+  min-height: 500px;
   overflow: hidden;
+  background: #0d1a3a;
+  display: block;
+  line-height: 0;
 }
 
-.welcome-hero-inner {
-  position: relative;
-  max-width: 1320px;
+.homepage-art {
   width: 100%;
-  margin: 0 auto;
   height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.welcome-text {
-  position: relative;
-  max-width: 460px;
-  padding-left: 16%;
-  color: var(--maroon);
-  text-align: center;
-}
-
-.welcome-text .eyebrow {
-  display: none;
-}
-
-.welcome-text h1 {
-  font-size: 2.7rem;
-  font-weight: 600;
-  line-height: 1.05;
-  text-align: center;
-}
-
-.welcome-text h1 small {
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  font-size: 1.05rem;
-  letter-spacing: 2px;
-  font-weight: 500;
-  margin-top: 4px;
-  color: var(--ink);
-  text-align: center;
 }
 
-/* ORNAMENTAL DIVIDERS (image-based) */
-.ornament {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 4px 0;
-}
-
-.ornament img {
-  display: block;
-  height: auto;
-}
-
-.ornament.cap img { width: 150px; }
-.ornament.sub img { width: 160px; }
-.ornament.mid img { width: 190px; }
-.ornament.pre-name img { width: 140px; }
-.ornament.post-name img { width: 160px; }
-.ornament.post-date img { width: 130px; }
-
-.welcome-text .blessing {
-  margin: 0 0 2px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  line-height: 1.38;
-  color: #1a3562;
-  text-align: center;
-}
-
-.welcome-names {
-  font-size: 1.9rem;
-  font-weight: 600;
-  margin-top: 4px;
-  color: var(--maroon);
-  text-align: center;
-}
-
-.welcome-date {
-  margin-top: 4px;
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #1a3562;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.welcome-image {
+/* Invisible clickable hotspots aligned over the nav bar in the image
+   (JS sizes this layer to match the rendered image exactly) */
+.desktop-hotspots {
   position: absolute;
-  left: 70%;
-  bottom: 0;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
+  z-index: 10;
 }
 
-.welcome-image img {
-  width: auto;
-  height: 58vh;
-  max-height: 420px;
-  max-width: 230px;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 18px rgba(15, 25, 65, 0.3));
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  height: 10%;   /* covers the nav row height in the image */
 }
+
+.hp-home   { left: 24.0%; width: 7.5%;  }
+.hp-story  { left: 34.0%; width: 9.5%;  }
+.hp-events { left: 46.5%; width: 7.5%;  }
+.hp-rsvp   { left: 57.5%; width: 6.5%;  }
+.hp-gift   { left: 67.5%; width: 12%;   }
 
 /* SUBPAGE HERO (Our Story / Events / Contact / FAQs) */
 .page-hero {
@@ -508,6 +402,7 @@ html.skip-splash .splash {
   background-position: center top;
   display: flex;
   align-items: flex-end;
+  padding-top: 70px;
 }
 
 .page-hero.subpage {
@@ -519,7 +414,7 @@ html.skip-splash .splash {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(20, 8, 5, 0.35);
+  background: rgba(8, 18, 45, 0.5);
 }
 
 .subpage-title {
@@ -1417,94 +1312,73 @@ html.skip-splash .splash {
     position: relative;
   }
 
-  .nav-links .sep { display: none; }
+  /* Nav on mobile — compact, still dark navy */
+  .site-nav {
+    height: 56px;
+    padding: 0 16px;
+    justify-content: flex-end;
+  }
+  .brand-monogram {
+    width: 38px;
+    height: 38px;
+    left: 14px;
+  }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; right: 16px; }
 
-  .page-hero { min-height: 78vh; background-position: center top; }
+  .page-hero { min-height: 78vh; background-position: center top; padding-top: 56px; }
   .page-hero.subpage { min-height: 34vh; }
   .subpage-title h1 { font-size: 2.1rem; }
 
-  .welcome-hero {
-    height: auto;
-    min-height: 100vh;
-    padding: 0 0 40px;
-    overflow: visible;
-    background-image: none;
-    position: relative;
-    isolation: isolate;
-  }
-
-  /* Arch background locked to top half of screen, zoomed so the arch
-     opening fills the viewport — couple will stand inside it. */
-  .welcome-hero::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background-image: url('arch_background.png');
-    background-size: 220%;
-    background-position: 76% 8%;
-    background-color: #f3e3bd;
-  }
-
-  .welcome-hero-inner {
-    position: relative;
-    z-index: 1;
+  /* Homepage image: contain so full design is visible; background fills gaps */
+  .home-screen {
+    height: 100vh;
+    height: 100svh;
+    min-height: 500px;
+    background: #0b1630;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0;
-    height: auto;
-    min-height: auto;
-    padding-top: 0;
-  }
-
-  /* Couple sits in the upper half of the screen inside the arch opening */
-  .welcome-image {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    transform: none;
-    order: -1;
-    width: 100%;
-    height: 58vh;
-    min-height: 320px;
-    display: flex;
-    align-items: flex-end;
     justify-content: center;
-    padding-bottom: 0;
-    padding-left: 22%;
-    padding-top: 40px;
-    margin-bottom: -30px;
+    overflow: hidden;
   }
-  .welcome-image img {
-    height: 90%;
-    width: auto;
-    max-width: 64vw;
-    max-height: none;
-    filter: drop-shadow(0 18px 24px rgba(15, 25, 65, 0.5));
+  .homepage-art {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  .desktop-hotspots { display: none; }
+
+  /* Mobile bottom navigation pill */
+  .mobile-home-nav {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 14px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(11, 22, 48, 0.95);
+    border: 1px solid rgba(201, 168, 76, 0.55);
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
 
-  /* Text card slides below with a generous top padding so the couple appears
-     to stand in front of / above it */
-  .welcome-text {
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    margin: 0 16px;
-    padding: 30px 18px 24px;
-    text-align: center;
-    background: rgba(255, 250, 235, 0.93);
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    border-radius: 26px;
-    box-shadow: 0 14px 40px rgba(18, 30, 72, 0.22);
+  .mobile-home-nav a {
+    color: var(--gold-pale);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
   }
 
-  .ornament.cap img { width: 140px; }
-  .ornament.sub img { width: 150px; }
-  .ornament.mid img { width: 170px; }
-  .ornament.pre-name img { width: 140px; }
-  .ornament.post-name img { width: 160px; }
-  .ornament.post-date img { width: 120px; }
+  .mobile-home-nav a.active { color: var(--gold-light); }
 
   .content { padding: 60px 22px 70px; }
   .content h2 { font-size: 1.9rem; }

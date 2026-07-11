@@ -59,63 +59,29 @@
 <!-- ============ MAIN WELCOME SITE ============ -->
 <div class="site welcome-active">
 
-  <header class="site-nav">
-    <div class="brand-monogram"><img src="emblem.png" alt="L K monogram"></div>
-    <nav>
-      <ul class="nav-links" id="navLinks">
-        <li><a class="active" href="index.html#main">Home</a></li>
-        <li class="sep">&#10022;</li>
-        <li><a href="our-story.html">Our Story</a></li>
-        <li class="sep">&#10022;</li>
-        <li><a href="events.html">Events</a></li>
-        <li class="sep">&#10022;</li>
-        <li><a href="rsvp.html">RSVP</a></li>
-        <li class="sep">&#10022;</li>
-        <li><a href="gift-registry.html">Gift Registry</a></li>
-      </ul>
+  <main class="home-screen" aria-label="Welcome">
+    <img src="homepage.png" class="homepage-art" alt="Lalana and Kartik Wedding Welcome">
+
+    <!-- Desktop: invisible hotspots over the nav bar in the image -->
+    <nav class="desktop-hotspots" aria-label="Main navigation">
+      <a class="hotspot hp-home"   href="index.html#main">Home</a>
+      <a class="hotspot hp-story"  href="our-story.html">Our Story</a>
+      <a class="hotspot hp-events" href="events.html">Events</a>
+      <a class="hotspot hp-rsvp"   href="rsvp.html">RSVP</a>
+      <a class="hotspot hp-gift"   href="gift-registry.html">Gift Registry</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-    <span class="nav-rule"><img src="small_symbol.png" alt=""></span>
-  </header>
 
-  <section class="welcome-hero">
-    <div class="welcome-hero-inner">
-      <div class="welcome-text">
-        <div class="namaste-greeting">
-          <span class="namaste-single">నమస్కారం &nbsp;&mdash;&nbsp; Namaste</span>
-        </div>
-        <div class="ornament cap"><img src="welcome_bar.png" alt=""></div>
-        <h1>Welcome<small>TO OUR WEDDING</small></h1>
-        <div class="ornament sub"><img src="welcome_below_bar.png" alt=""></div>
-        <p class="blessing">
-          With the blessings of our families, the grace of the divine,
-          and hearts filled with love, we invite you to celebrate
-          this beautiful beginning with us.
-        </p>
-        <div class="ornament mid"><img src="main_bar.png" alt=""></div>
-        <p class="blessing">
-          May this day be filled with tradition, joy, sacred moments,
-          and memories that stay with us forever.
-        </p>
-        <div class="ornament pre-name"><img src="Lalana_above.png" alt=""></div>
-        <div class="welcome-names">Lalana &amp; Kartik</div>
-        <div class="ornament post-name"><img src="Lalana_below.png" alt=""></div>
-        <div class="welcome-date">27<sup>th</sup> August 2026</div>
-        <div class="ornament post-date"><img src="date_below.png" alt=""></div>
-      </div>
-      <div class="welcome-image">
-        <img src="our_pic.png" alt="Lalana and Kartik">
-      </div>
-    </div>
-  </section>
+    <!-- Mobile: floating bottom nav pill -->
+    <nav class="mobile-home-nav" aria-label="Mobile navigation">
+      <a href="index.html#main" class="active">Home</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="events.html">Events</a>
+      <a href="rsvp.html">RSVP</a>
+      <a href="gift-registry.html">Gifts</a>
+    </nav>
+  </main>
 
-  <!-- ============ MOBILE SINGLE-SCROLL PAGES ============
-       On mobile, the other pages are fetched and stitched in here, in
-       order, so the whole site is one continuous scroll (like the Apple
-       site) instead of separate pages behind a hamburger menu. Desktop
-       never sees this — it stays a normal multi-page nav experience. -->
+  <!-- ============ MOBILE SINGLE-SCROLL PAGES ============ -->
   <div id="mobile-pages" class="mobile-only">
     <div class="mobile-page-section" data-src="events.html" data-label="Events"></div>
     <div class="mobile-page-section" data-src="our-story.html" data-label="Our Story"></div>

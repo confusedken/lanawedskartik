@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------- HOME HOTSPOT NAV ALIGNMENT ----------
-  const welcomeArt   = document.querySelector(".welcome-art");
+  const welcomeArt   = document.querySelector(".homepage-art");
   const hotspotLayer = document.querySelector(".desktop-hotspots");
 
   if (welcomeArt && hotspotLayer) {
