@@ -1,5 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // ---------- SHARED HEADER / FOOTER PARTIALS ----------
+  function setActiveNavLink(nav) {
+    const current = location.pathname.split("/").pop() || "index.html";
+    nav.querySelectorAll("a").forEach((link) => {
+      const linkPage = link.getAttribute("href").split("#")[0];
+      link.classList.toggle("active", linkPage === current);
+    });
+  }
+
+  function wireNavToggle(nav) {
+    const navToggle = nav.querySelector("#navToggle");
+    const navLinks = nav.querySelector("#navLinks");
+    if (!navToggle || !navLinks) return;
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+    document.addEventListener("click", (e) => {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove("open");
+      }
+    });
+  }
+
+  const navMount = document.getElementById("site-nav-mount");
+  if (navMount) {
+    fetch("partials/nav.html")
+      .then((res) => (res.ok ? res.text() : Promise.reject(res.status)))
+      .then((html) => {
+        navMount.innerHTML = html;
+        setActiveNavLink(navMount);
+        wireNavToggle(navMount);
+      })
+      .catch((err) => console.log("Could not load nav partial:", err));
+  }
+
+  const footerMount = document.getElementById("site-footer-mount");
+  if (footerMount) {
+    fetch("partials/footer.html")
+      .then((res) => (res.ok ? res.text() : Promise.reject(res.status)))
+      .then((html) => { footerMount.innerHTML = html; })
+      .catch((err) => console.log("Could not load footer partial:", err));
+  }
+
   // ---------- SOUND MODAL + SPLASH ----------
   const soundModal = document.getElementById("soundModal");
   const soundYes   = document.getElementById("soundYes");
@@ -47,25 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (splash) splash.classList.add("hidden");
       if (video)  { video.pause(); video.muted = true; }
       document.body.style.overflow = "";
-    });
-  }
-
-  // ---------- MOBILE NAV TOGGLE ----------
-  const navToggle = document.getElementById("navToggle");
-  const navLinks  = document.getElementById("navLinks");
-
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => navLinks.classList.remove("open"));
-    });
-    // Close if tapping outside
-    document.addEventListener("click", (e) => {
-      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
-        navLinks.classList.remove("open");
-      }
     });
   }
 
@@ -131,3 +159,49 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+// ---------- RSVP FORM ----------
+// Declared at top level (not inside the DOMContentLoaded closure) so the
+// inline onclick/onsubmit attributes on rsvp.html's markup can find these
+// globally — including when that markup is stitched into index.html for
+// the mobile single-scroll view.
+let guests = 1;
+
+function changeGuests(delta) {
+  guests = Math.max(1, Math.min(20, guests + delta));
+  const countEl = document.getElementById("guestCount");
+  const valueEl = document.getElementById("rsvp-guests-value");
+  if (countEl) countEl.textContent = guests;
+  if (valueEl) valueEl.value = guests;
+}
+
+function submitRSVP(e) {
+  e.preventDefault();
+  const form = document.getElementById("rsvpForm");
+  const attending = form.querySelector('input[name="attending"]:checked')?.value;
+  if (!attending) {
+    alert("Please select your response (Joyfully Joining or Sadly Regret).");
+    return;
+  }
+  // In production wire this to a real backend/FormSubmit/Netlify Forms etc.
+  document.getElementById("rsvpForm").style.display = "none";
+  document.getElementById("rsvpSuccess").style.display = "block";
+  document.getElementById("rsvpSuccess").scrollIntoView({ behavior: "smooth" });
+}
+
+// ---------- GIFT REGISTRY ----------
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = "Copied ✓";
+    btn.style.background = "var(--maroon)";
+    btn.style.color = "var(--gold-pale)";
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = "";
+      btn.style.color = "";
+    }, 2000);
+  }).catch(() => {
+    prompt("Copy this:", text);
+  });
+}
