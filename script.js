@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navMount = document.getElementById("site-nav-mount");
   if (navMount) {
-    fetch("partials/nav.html")
+    fetch("nav-partial.html")
       .then((res) => (res.ok ? res.text() : Promise.reject(res.status)))
       .then((html) => {
         navMount.innerHTML = html;
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const footerMount = document.getElementById("site-footer-mount");
   if (footerMount) {
-    fetch("partials/footer.html")
+    fetch("footer-partial.html")
       .then((res) => (res.ok ? res.text() : Promise.reject(res.status)))
       .then((html) => { footerMount.innerHTML = html; })
       .catch((err) => console.log("Could not load footer partial:", err));
