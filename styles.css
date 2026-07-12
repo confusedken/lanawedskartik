@@ -365,6 +365,12 @@ html.skip-splash .splash {
   display: none;
 }
 
+/* Floating bottom pill nav for the mobile home screen — hidden on
+   desktop, where navigation lives in the hotspot layer instead. */
+.mobile-home-nav {
+  display: none;
+}
+
 /* =========================================================
    HOME SCREEN — full-width flattened image with hotspot nav
 ========================================================= */
@@ -1308,6 +1314,17 @@ html.skip-splash .splash {
 }
 
 /* =========================================================
+   TABLET — nav still uses the full desktop layout above 768px,
+   but the fixed 110px/160px side padding (reserved for the emblem
+   on the left, visual balance on the right) is too wide once the
+   viewport shrinks toward tablet sizes, cramping/wrapping the links.
+========================================================= */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .site-nav { padding: 0 40px 0 100px; }
+  .nav-links a { padding: 6px 10px; font-size: 1.05rem; }
+}
+
+/* =========================================================
    MOBILE
 ========================================================= */
 @media (max-width: 768px) {
@@ -1334,8 +1351,46 @@ html.skip-splash .splash {
     object-position: 18% center;  /* show left parchment+text panel */
   }
   .desktop-hotspots { display: none; }
-  /* Remove floating bottom pill nav — subpages open normally */
-  .mobile-home-nav { display: none; }
+
+  /* Floating bottom pill nav — the only way to reach other pages
+     from the mobile home screen (hotspots are desktop-only). */
+  .mobile-home-nav {
+    display: flex;
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    z-index: 60;
+    gap: 2px;
+    max-width: calc(100% - 24px);
+    overflow-x: auto;
+    background: rgba(6, 36, 69, 0.92);
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    padding: 8px 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .mobile-home-nav a {
+    color: #e8d5a0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .mobile-home-nav a.active,
+  .mobile-home-nav a:hover {
+    background: var(--gold);
+    color: var(--maroon);
+  }
+
+  /* Leave room so the floating pill nav never overlaps stitched content */
+  #mobile-pages { padding-bottom: 90px; }
 
   /* ---- MOBILE SINGLE-SCROLL (desktop pattern still works for tabs) ---- */
   .mobile-only { display: block; }
@@ -1418,6 +1473,7 @@ html.skip-splash .splash {
   .event-cards { grid-template-columns: 1fr; gap: 24px; }
   .event-art { aspect-ratio: 16 / 11; }
   .event-card-v2 h3 { font-size: 1.5rem; }
+  .event-desc { font-size: 1rem; }
 
   .story { padding-top: 80px; background-attachment: scroll; }
   .story-block { padding: 38px 0; width: calc(100% - 36px); }
@@ -1436,53 +1492,6 @@ html.skip-splash .splash {
   .photo-frame.portrait { max-width: 320px; margin: 0 auto; }
   .photo-frame.wide { aspect-ratio: 4 / 3; }
   .section-ornament img { width: 160px; }
-  .finale-copy h2 { font-size: 2.4rem; }
-  .finale-copy p { font-size: 1.05rem; }
-  .closing-line { font-size: 2rem !important; }
-}
-  .event-desc { font-size: 1rem; }
-
-  .story { padding-top: 130px; background-attachment: scroll; }
-
-  .story-block { padding: 38px 0; width: calc(100% - 36px); }
-
-  .story-grid,
-  .story-block.split,
-  .story-block.split.reverse {
-    grid-template-columns: 1fr;
-    gap: 26px;
-    text-align: center;
-  }
-
-  .story-block.split.reverse .story-photo,
-  .story-block.split .story-photo { order: -1; }
-
-  .story-copy,
-  .finale-copy {
-    padding: 26px 22px;
-    border-radius: 20px;
-  }
-
-  .story-copy .eyebrow,
-  .finale-copy .eyebrow { font-size: 1rem; }
-
-  .story-copy p,
-  .story-block.split .story-copy p,
-  .story-block.intro .story-copy p {
-    max-width: 100%;
-    font-size: 1.05rem;
-  }
-
-  .story-copy h1 { text-align: center; font-size: 2.6rem; }
-  .story-divider { justify-content: center; }
-  .story-divider img { width: 130px; }
-  .script-name { font-size: 3.4rem; }
-
-  .photo-frame.portrait { max-width: 320px; margin: 0 auto; }
-  .photo-frame.wide { aspect-ratio: 4 / 3; }
-
-  .section-ornament img { width: 160px; }
-
   .finale-copy h2 { font-size: 2.4rem; }
   .finale-copy p { font-size: 1.05rem; }
   .closing-line { font-size: 2rem !important; }
