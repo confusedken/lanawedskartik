@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Script Font Preview — Dancing Script | Lalana & Kartik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@400;500;600&family=Dancing+Script:wght@500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=4"/>
+  <style>
+    body { background: var(--warm-cream); margin: 0; padding: 0 0 80px; }
+    .preview-header {
+      text-align: center;
+      padding: 44px 24px 28px;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text-dark);
+    }
+    .preview-header h1 {
+      font-family: 'Cinzel', serif;
+      color: var(--maroon);
+      letter-spacing: 0.08em;
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      margin: 0 0 10px;
+    }
+    .preview-header p { max-width: 640px; margin: 0 auto; font-size: 1.1rem; }
+    .badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(109, 36, 36, 0.08);
+      color: var(--maroon);
+      font-size: 0.95rem;
+    }
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .sample {
+      background: rgba(255, 252, 247, 0.96);
+      border: 1px solid rgba(156, 186, 200, 0.5);
+      border-radius: 18px;
+      padding: 22px 24px 26px;
+      box-shadow: 0 10px 26px rgba(59, 38, 29, 0.07);
+    }
+    .sample .label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--maroon);
+      margin-bottom: 4px;
+    }
+    .sample .where { font-size: 0.98rem; color: #6a5a4f; margin-bottom: 16px; }
+    .sample .demo { padding: 16px 0 4px; }
+    .nav-strip {
+      background: linear-gradient(180deg, var(--primary-blue) 0%, var(--muted-blue) 100%);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 8px;
+    }
+    .hero-strip {
+      background: linear-gradient(rgba(59,38,29,0.35), rgba(59,38,29,0.35)), url('meenakshi-hero.png') center/cover;
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      color: #fff;
+    }
+    .ivory-strip {
+      background: var(--ivory);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .page-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .page-links a {
+      display: block;
+      text-align: center;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--primary-blue) 0%, var(--muted-blue) 100%);
+      border: 1px solid var(--gold);
+      color: var(--text-dark);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+    .page-links a:hover { color: var(--maroon); }
+    .note { text-align: center; font-size: 1.05rem; color: #6a5a4f; padding-top: 8px; }
+  </style>
+</head>
+<body>
+  <header class="preview-header">
+    <h1>Script Font Preview</h1>
+    <p>All former <strong>Great Vibes</strong> text is now <strong>Dancing Script</strong> — using the real site stylesheet. Review below, then open the live pages.</p>
+    <span class="badge">Local preview only — not yet published to Vercel</span>
+  </header>
+
+  <main>
+    <section class="sample">
+      <div class="label">Homepage welcome card</div>
+      <div class="where">`.welcome-names .name-script` — “Lalana & Kartik” on the invitation card</div>
+      <div class="demo ivory-strip">
+        <p class="welcome-names" style="margin:0">
+          <span class="name-script">Lalana</span>
+          <span class="name-amp">&amp;</span>
+          <span class="name-script">Kartik</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="sample">
+      <div class="label">Subpage hero taglines</div>
+      <div class="where">`.subpage-script` — e.g. Our Story, Events hero subtitles</div>
+      <div class="demo hero-strip">
+        <p class="subpage-script" style="margin:0">Two worlds, one beautifully chaotic beginning</p>
+      </div>
+    </section>
+
+    <section class="sample">
+      <div class="label">Our Story — intro names</div>
+      <div class="where">`.script-name` — large name headings in story sections</div>
+      <div class="demo ivory-strip">
+        <p class="script-name" style="margin:0">Lalana &amp; Kartik</p>
+      </div>
+    </section>
+
+    <section class="sample">
+      <div class="label">Our Story — closing line</div>
+      <div class="where">`.closing-line` — finale copy</div>
+      <div class="demo ivory-strip">
+        <p class="closing-line" style="margin:0">And now, with all their beautiful madness, they are ready for forever.</p>
+      </div>
+    </section>
+
+    <section class="sample">
+      <div class="label">Events — wedding title</div>
+      <div class="where">`.wedding-english-title` — ceremony feature headings</div>
+      <div class="demo ivory-strip">
+        <p class="wedding-english-title" style="margin:0">Wedding <span>&amp;</span> Reception</p>
+      </div>
+    </section>
+
+    <section class="sample">
+      <div class="label">RSVP success message</div>
+      <div class="where">`.success-script` — after form submission</div>
+      <div class="demo ivory-strip">
+        <p class="success-script" style="margin:0">Thank you!</p>
+      </div>
+    </section>
+
+    <section class="sample">
+      <div class="label">Gift registry cards</div>
+      <div class="where">`.gift-card-name` — registry item titles</div>
+      <div class="demo ivory-strip">
+        <p class="gift-card-name" style="margin:0">Honeymoon Fund</p>
+      </div>
+    </section>
+
+    <section class="sample">
+      <div class="label">Full page previews</div>
+      <div class="where">Open each page to see Dancing Script in context</div>
+      <div class="page-links">
+        <a href="index.html#main">Home</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="events.html">Events</a>
+        <a href="rsvp.html">RSVP</a>
+        <a href="gift-registry.html">Gift Registry</a>
+      </div>
+    </section>
+
+    <p class="note">Happy with this? Say the word and I’ll publish to Vercel.</p>
+  </main>
+</body>
+</html>

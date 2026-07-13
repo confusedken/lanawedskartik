@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="L K monogram with dancing couple">
+  <defs>
+    <clipPath id="circleClip">
+      <circle cx="256" cy="256" r="236"/>
+    </clipPath>
+  </defs>
+  <!-- ivory badge -->
+  <circle cx="256" cy="256" r="236" fill="#ECE5D8"/>
+  <circle cx="256" cy="256" r="236" fill="none" stroke="#A59566" stroke-width="5"/>
+  <circle cx="256" cy="256" r="225" fill="none" stroke="#6D2424" stroke-width="2"/>
+
+  <g clip-path="url(#circleClip)">
+    <!-- L and K flanking -->
+    <text x="52" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-weight="600" fill="#A59566">L</text>
+    <text x="360" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-weight="600" fill="#A59566">K</text>
+
+    <!-- Couple silhouette traced from dance photo: groom left, bride spinning right -->
+    <g transform="translate(256 290) scale(1.05)" fill="#3B261D">
+      <!-- groom -->
+      <path d="M-92,-10 C-92,-48 -78,-78 -58,-98 C-48,-108 -38,-112 -28,-108 C-18,-104 -12,-92 -10,-78 L-8,-62 C-6,-48 -4,-36 2,-28 C8,-20 18,-8 26,8 C34,24 38,42 36,58 L34,72 C32,88 24,98 12,102 C0,106 -12,102 -20,92 C-28,82 -34,68 -38,52 C-42,36 -46,18 -52,2 C-58,-14 -68,-28 -78,-36 C-88,-44 -92,-28 -92,-10 Z"/>
+      <path d="M-30,-108 C-24,-130 -8,-148 12,-158 C32,-168 48,-162 54,-148 C58,-138 52,-128 40,-124 C28,-120 14,-112 4,-98 C-6,-84 -12,-66 -14,-48 C-16,-30 -22,-16 -30,-8 Z"/>
+      <!-- raised joined arms -->
+      <path d="M-14,-48 C-4,-72 16,-92 40,-102 C56,-108 68,-104 72,-92 C74,-84 66,-76 52,-74 C38,-72 22,-62 10,-48 C-2,-34 -8,-18 -10,-2 C-12,14 -18,28 -28,36 C-38,44 -48,40 -50,28 C-52,16 -44,4 -32,-6 C-24,-14 -18,-28 -14,-48 Z"/>
+      <!-- bride body -->
+      <path d="M8,-48 C18,-58 32,-62 46,-58 C60,-54 70,-42 72,-26 C74,-10 68,6 56,18 C44,30 28,36 12,34 C-4,32 -16,22 -18,8 C-20,-6 -12,-20 0,-30 C6,-36 8,-42 8,-48 Z"/>
+      <!-- spinning dress flare -->
+      <path d="M12,34 C28,38 48,48 68,62 C88,76 104,92 112,108 C120,124 118,140 106,150 C94,160 74,162 52,156 C30,150 10,136 -4,118 C-18,100 -22,80 -16,62 C-10,44 0,30 12,34 Z"/>
+      <path d="M46,-58 C58,-68 72,-72 86,-66 C100,-60 108,-46 106,-30 C104,-14 92,0 76,8 C60,16 42,16 28,8 C14,0 6,-14 8,-30 C10,-46 22,-58 36,-62 C40,-63 44,-61 46,-58 Z"/>
+      <!-- bride hair -->
+      <path d="M72,-26 C82,-18 90,-4 92,12 C94,28 88,42 76,50 C64,58 48,58 36,50 C24,42 18,28 20,12 C22,-4 32,-18 46,-24 C54,-28 64,-28 72,-26 Z"/>
+    </g>
+  </g>
+</svg>

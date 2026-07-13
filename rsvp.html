@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RSVP | Lalana & Kartik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&family=Parisienne&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=25"/>
+</head>
+<body>
+
+<div class="site">
+
+  <div id="site-nav-mount">
+    <header class="site-nav">
+      <a class="brand-monogram" href="index.html#main" aria-label="Lalana & Kartik — Home">
+        <span class="lk-lockup">
+          <img class="silhouette" src="lk-silhouette-from-a.png" alt=""/>
+          <span class="letters" aria-hidden="true"><span>L</span><span class="amp">&</span><span>K</span></span>
+        </span>
+      </a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#main"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</a></li>
+          <li class="sep">|</li>
+          <li><a href="our-story.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Our Story</a></li>
+          <li class="sep">|</li>
+          <li><a href="events.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 3L2 9v2h2v8h16V11h2V9L12 3zm0 2.31L18 9H6l6-3.69zM8 11h2v6H8v-6zm3 0h2v6h-2v-6zm3 0h2v6h-2v-6z"/></svg>Events</a></li>
+          <li class="sep">|</li>
+          <li><a href="rsvp.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>RSVP</a></li>
+          <li class="sep">|</li>
+          <li><a href="gift-registry.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 6h-2.18c.07-.28.18-.54.18-.83C18 3.42 16.5 2 14.83 2c-.96 0-1.8.5-2.31 1.24L12 4.04l-.52-.8C10.97 2.5 10.13 2 9.17 2 7.5 2 6 3.42 6 5.17c0 .29.11.55.18.83H4c-1.1 0-2 .9-2 2v4h1v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h1V8c0-1.1-.9-2-2-2zm-5.17-2c.46 0 .83.38.83.83 0 .46-.37.84-.83.84H13v-.05l1.05-1.62H14.83zM9.17 4.67c.46 0 .83.38.83.83 0 .46-.37.84-.83.84H9.95L11 4.72v-.05C10.62 4.22 9.94 4 9.17 4.67zM11 19H7v-7h4v7zm0-9H4V8h7v2zm6 9h-4v-7h4v7zm2-9h-7V8h7v2z"/></svg>Gift Registry</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="nav-rule"></span>
+    </header>
+  </div>
+  <div id="page-content">
+
+  <section class="page-hero subpage">
+    <div class="subpage-title">
+      <h1>RSVP</h1>
+      <p class="subpage-script">We would love to celebrate with you</p>
+    </div>
+  </section>
+
+  <main class="rsvp-page">
+
+    <div class="rsvp-intro reveal">
+      <div class="section-ornament"><img src="welcome_bar.png" alt=""></div>
+      <p>Please let us know if you can make it. We can't wait to celebrate with you!</p>
+    </div>
+
+    <div class="rsvp-container reveal">
+
+      <form class="rsvp-form" id="rsvpForm" onsubmit="submitRSVP(event)">
+
+        <!-- Name -->
+        <div class="rsvp-field">
+          <label for="rsvp-name">Your Full Name</label>
+          <input type="text" id="rsvp-name" name="name" placeholder="e.g. Priya Sharma" required>
+        </div>
+
+        <!-- Event -->
+        <div class="rsvp-field" id="rsvpEventsField">
+          <label>Which events will you be attending?</label>
+          <div class="rsvp-checkboxes" id="rsvpEventsCheckboxes">
+            <label class="check-item"><input type="checkbox" name="events" value="Wedding Ceremony"> Wedding Ceremony (Hyderabad) <span class="check-date">27 Aug</span></label>
+            <label class="check-item"><input type="checkbox" name="events" value="Reception"> Reception (Nagpur) <span class="check-date">2 Sep</span></label>
+          </div>
+        </div>
+
+        <!-- Attending -->
+        <div class="rsvp-field">
+          <label>Your Response</label>
+          <div class="rsvp-radio-group">
+            <label class="radio-card yes-card">
+              <input type="radio" name="attending" value="yes" required>
+              <span class="radio-icon">🎉</span>
+              <span class="radio-label">Joyfully Joining</span>
+              <span class="radio-sub">We will be there!</span>
+            </label>
+            <label class="radio-card no-card">
+              <input type="radio" name="attending" value="no">
+              <span class="radio-icon">💌</span>
+              <span class="radio-label">Sadly Regret</span>
+              <span class="radio-sub">Sending love from afar</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Guest count -->
+        <div class="rsvp-field" id="rsvpGuestsField">
+          <label for="rsvp-guests">Number of guests (including yourself)</label>
+          <div class="rsvp-counter" id="rsvpGuestsCounter">
+            <button type="button" onclick="changeGuests(-1)">&#8722;</button>
+            <span id="guestCount">1</span>
+            <button type="button" onclick="changeGuests(1)">&#43;</button>
+          </div>
+          <input type="hidden" id="rsvp-guests-value" name="guests" value="1">
+        </div>
+
+        <!-- Message -->
+        <div class="rsvp-field">
+          <label for="rsvp-message">Leave a message for Lalana &amp; Kartik <span class="optional">(optional)</span></label>
+          <textarea id="rsvp-message" name="message" rows="4" placeholder="Write your wishes here…"></textarea>
+        </div>
+
+        <p class="rsvp-error" id="rsvpError" style="display:none;" role="alert"></p>
+
+        <button type="submit" class="rsvp-submit">Send RSVP &#10003;</button>
+
+      </form>
+
+      <!-- Success state -->
+      <div class="rsvp-success" id="rsvpSuccess" style="display:none;">
+        <div class="success-ornament"><img src="welcome_bar.png" alt=""></div>
+        <p class="success-script">Thank you!</p>
+        <p class="success-body">Your RSVP has been received</p>
+        <p class="success-names">— Lalana &amp; Kartik 💛</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  </div>
+
+  <div id="site-footer-mount"></div>
+</div>
+
+<script src="rsvp-config.js"></script>
+<script src="script.js?v=25"></script>
+</body>
+</html>

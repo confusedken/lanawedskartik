@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lalana & Kartik Wedding</title>
+
+  <script>
+    if (window.location.hash === "#main") {
+      document.documentElement.classList.add("skip-splash");
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&family=Parisienne&family=Playfair+Display:wght@500;600&family=Noto+Serif+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=25"/>
+</head>
+<body>
+
+<!-- ============ SPLASH SCREEN ============ -->
+<section class="splash" id="splash">
+  <video id="heroVideo" class="bg-video" autoplay muted loop playsinline>
+    <source src="ganapati-video.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="splash-sound-wrap">
+    <button type="button" id="splashSoundBtn" class="splash-sound-btn" aria-label="Unmute splash video" aria-pressed="true">
+      <svg class="sound-icon sound-icon-muted" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M16.5 12A4.5 4.5 0 0 0 14 8.03v2.21l2.45 2.45c.03-.2.05-.41.05-.69zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-2.76-1.28-5.22-3.29-6.82l-1.5 1.5A6.5 6.5 0 0 1 19 12zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/>
+      </svg>
+      <svg class="sound-icon sound-icon-unmuted" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="splash-content">
+    <div class="mantra-wrapper">
+      <img src="om-ganapati.png" class="mantra-img" alt="Om Ganapataye Namah">
+    </div>
+
+    <button id="enterBtn" class="royal-image-btn">
+      <img src="royal-button-frame-v2.png" alt="" class="button-frame-img"/>
+      <span class="button-text">Enter Our Wedding</span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ MAIN WELCOME SITE ============ -->
+<div class="site welcome-active">
+
+  <div id="site-nav-mount">
+    <header class="site-nav">
+      <a class="brand-monogram" href="index.html#main" aria-label="Lalana & Kartik — Home">
+        <span class="lk-lockup">
+          <img class="silhouette" src="lk-silhouette-from-a.png" alt=""/>
+          <span class="letters" aria-hidden="true"><span>L</span><span class="amp">&</span><span>K</span></span>
+        </span>
+      </a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#main"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</a></li>
+          <li class="sep">|</li>
+          <li><a href="our-story.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Our Story</a></li>
+          <li class="sep">|</li>
+          <li><a href="events.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 3L2 9v2h2v8h16V11h2V9L12 3zm0 2.31L18 9H6l6-3.69zM8 11h2v6H8v-6zm3 0h2v6h-2v-6zm3 0h2v6h-2v-6z"/></svg>Events</a></li>
+          <li class="sep">|</li>
+          <li><a href="rsvp.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>RSVP</a></li>
+          <li class="sep">|</li>
+          <li><a href="gift-registry.html"><svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 6h-2.18c.07-.28.18-.54.18-.83C18 3.42 16.5 2 14.83 2c-.96 0-1.8.5-2.31 1.24L12 4.04l-.52-.8C10.97 2.5 10.13 2 9.17 2 7.5 2 6 3.42 6 5.17c0 .29.11.55.18.83H4c-1.1 0-2 .9-2 2v4h1v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h1V8c0-1.1-.9-2-2-2zm-5.17-2c.46 0 .83.38.83.83 0 .46-.37.84-.83.84H13v-.05l1.05-1.62H14.83zM9.17 4.67c.46 0 .83.38.83.83 0 .46-.37.84-.83.84H9.95L11 4.72v-.05C10.62 4.22 9.94 4 9.17 4.67zM11 19H7v-7h4v7zm0-9H4V8h7v2zm6 9h-4v-7h4v7zm2-9h-7V8h7v2z"/></svg>Gift Registry</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="nav-rule"></span>
+    </header>
+  </div>
+
+  <main class="home-screen invitation-home" aria-label="Welcome">
+
+    <div class="invitation-scene temple-hero home-hero">
+      <div class="toran-hang" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <article class="invitation-card welcome-card">
+        <p class="welcome-eyebrow">Welcome to our</p>
+        <h1 class="welcome-wedding">Wedding</h1>
+
+        <h2 class="welcome-names">
+          <span class="name-script">Lalana</span>
+          <span class="name-amp">&amp;</span>
+          <span class="name-script">Kartik</span>
+        </h2>
+
+        <div class="welcome-divider"><img src="welcome_bar.png" alt=""></div>
+
+        <p class="welcome-body">
+          With the blessings of our families,<br>
+          the grace of the divine,<br>
+          and hearts filled with love,<br>
+          we invite you to celebrate<br>
+          this beautiful beginning with us.
+        </p>
+
+        <div class="welcome-divider"><img src="welcome_bar.png" alt=""></div>
+
+        <p class="welcome-closing">
+          May this day be filled with tradition,<br>
+          joy, sacred moments, and memories<br>
+          that stay with us forever.
+        </p>
+
+        <div class="countdown-widget" id="weddingCountdown" aria-live="polite">
+          <p class="countdown-label">Countdown to Muhurtham</p>
+          <p class="countdown-sub">27 August 2026 · 11:20 AM · Hyderabad</p>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cdDays">--</span>
+              <span class="countdown-cap">Days</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cdHours">--</span>
+              <span class="countdown-cap">Hours</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cdMins">--</span>
+              <span class="countdown-cap">Mins</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cdSecs">--</span>
+              <span class="countdown-cap">Secs</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Mobile: floating bottom nav pill -->
+    <nav class="mobile-home-nav" aria-label="Mobile navigation">
+      <a href="index.html#main" class="active">Home</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="events.html">Events</a>
+      <a href="rsvp.html">RSVP</a>
+      <a href="gift-registry.html">Gifts</a>
+    </nav>
+  </main>
+
+  <!-- ============ MOBILE SINGLE-SCROLL PAGES ============ -->
+  <div id="mobile-pages" class="mobile-only">
+    <div class="mobile-page-section" data-src="events.html" data-label="Events"></div>
+    <div class="mobile-page-section" data-src="our-story.html" data-label="Our Story"></div>
+    <div class="mobile-page-section" data-src="rsvp.html" data-label="RSVP"></div>
+    <div class="mobile-page-section" data-src="gift-registry.html" data-label="Gift Registry"></div>
+  </div>
+
+  <div id="site-footer-mount"></div>
+</div>
+
+<script src="rsvp-config.js"></script>
+  <script src="script.js?v=25"></script>
+</body>
+</html>

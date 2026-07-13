@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logo Font Options — L&K | Lalana & Kartik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Dancing+Script:wght@500;600&family=Allura&family=Alex+Brush&family=Pinyon+Script&family=Sacramento&family=Tangerine:wght@400;700&family=Petit+Formal+Script&family=Cormorant+Garamond:wght@500;600&family=Cinzel:wght@500&family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:wght@500;600&family=EB+Garamond:wght@500&family=Marcellus&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #B3CFDA;
+      --muted-blue: #9CBAC8;
+      --ivory: #ECE5D8;
+      --warm-cream: #F3EBDD;
+      --text-dark: #3B261D;
+      --maroon: #6D2424;
+      --gold: #D6A764;
+      --antique-gold: #A59566;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--warm-cream);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    header {
+      text-align: center;
+      padding: 44px 24px 20px;
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      color: var(--maroon);
+      letter-spacing: 0.08em;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      margin: 0 0 10px;
+    }
+
+    header p { max-width: 640px; margin: 0 auto; font-size: 1.12rem; }
+
+    .badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(109, 36, 36, 0.08);
+      color: var(--maroon);
+      font-size: 0.95rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8px 20px 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .option {
+      background: #fff;
+      border: 1px solid rgba(156, 186, 200, 0.5);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(59, 38, 29, 0.07);
+    }
+
+    .option.current { border: 2px solid var(--gold); }
+
+    .option .meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 20px 10px;
+    }
+
+    .option .meta .name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      color: var(--maroon);
+      text-transform: uppercase;
+    }
+
+    .option .meta .tag { font-size: 0.95rem; color: #6a5a4f; }
+
+    /* Real nav bar mock */
+    .nav-mock {
+      display: flex;
+      align-items: center;
+      height: 72px;
+      padding: 0 24px 0 14px;
+      background: linear-gradient(180deg, var(--primary-blue) 0%, var(--muted-blue) 100%);
+      border-top: 1px solid rgba(214, 167, 100, 0.5);
+    }
+
+    .lk-lockup {
+      --silhouette-h: 56px;
+      --letter-size: calc(var(--silhouette-h) * 0.92);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: var(--silhouette-h);
+      line-height: 1;
+    }
+
+    .lk-lockup .silhouette {
+      display: block;
+      height: var(--silhouette-h);
+      width: auto;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 8px rgba(59, 38, 29, 0.4));
+    }
+
+    .lk-lockup .letters {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--text-dark);
+      font-size: var(--letter-size);
+      line-height: 1;
+      user-select: none;
+      height: var(--silhouette-h);
+    }
+
+    .lk-lockup .letters .amp {
+      font-size: 0.62em;
+      margin: 0 2px;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ---- font families per option ---- */
+    .f-great-vibes .letters { font-family: 'Great Vibes', cursive; }
+    .f-parisienne .letters { font-family: 'Parisienne', cursive; }
+    .f-dancing .letters { font-family: 'Dancing Script', cursive; font-weight: 600; }
+    .f-allura .letters { font-family: 'Allura', cursive; }
+    .f-alex .letters { font-family: 'Alex Brush', cursive; }
+    .f-pinyon .letters { font-family: 'Pinyon Script', cursive; }
+    .f-sacramento .letters { font-family: 'Sacramento', cursive; }
+    .f-tangerine .letters { font-family: 'Tangerine', cursive; font-weight: 700; font-size: calc(var(--silhouette-h) * 1.25); }
+    .f-petit .letters { font-family: 'Petit Formal Script', cursive; }
+    .f-cormorant .letters { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: calc(var(--silhouette-h) * 0.8); }
+    .f-cinzel .letters { font-family: 'Cinzel', serif; font-weight: 500; font-size: calc(var(--silhouette-h) * 0.62); letter-spacing: 0.02em; }
+    .f-playfair .letters { font-family: 'Playfair Display', serif; font-weight: 500; font-size: calc(var(--silhouette-h) * 0.68); }
+    .f-marcellus .letters { font-family: 'Marcellus', serif; font-size: calc(var(--silhouette-h) * 0.72); letter-spacing: 0.02em; }
+
+    .note-foot {
+      text-align: center;
+      font-size: 1.05rem;
+      color: #6a5a4f;
+      padding-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Logo Font Options — L&amp;K</h1>
+    <p>The same silhouette + <strong>L&nbsp;&amp;&nbsp;K</strong> shown on the real nav bar, in a range of soft scripts and refined serifs. Tell me which number you like and I’ll apply it.</p>
+    <span class="badge">Preview only — current site uses #1 (Great Vibes)</span>
+  </header>
+
+  <main>
+    <div class="option current">
+      <div class="meta"><span class="name">1 · Great Vibes</span><span class="tag">flowing formal script (current)</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-great-vibes"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">2 · Parisienne</span><span class="tag">soft, casual, rounded script</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-parisienne"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">3 · Dancing Script</span><span class="tag">playful, friendly, bouncy</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-dancing"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">4 · Allura</span><span class="tag">delicate, thin, airy script</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-allura"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">5 · Alex Brush</span><span class="tag">relaxed brush calligraphy</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-alex"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">6 · Pinyon Script</span><span class="tag">ornate, vintage, formal</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-pinyon"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">7 · Sacramento</span><span class="tag">clean monoline, modern</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-sacramento"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">8 · Tangerine</span><span class="tag">grand, sweeping calligraphy</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-tangerine"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">9 · Petit Formal Script</span><span class="tag">refined, engraved feel</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-petit"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">10 · Cormorant Garamond</span><span class="tag">serif — matches nav links</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-cormorant"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">11 · Cinzel</span><span class="tag">classic engraved caps</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-cinzel"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">12 · Playfair Display</span><span class="tag">elegant high-contrast serif</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-playfair"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <div class="option">
+      <div class="meta"><span class="name">13 · Marcellus</span><span class="tag">soft, understated Roman serif</span></div>
+      <div class="nav-mock"><span class="lk-lockup f-marcellus"><img class="silhouette" src="lk-silhouette-from-a.png" alt=""/><span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span></span></div>
+    </div>
+
+    <p class="note-foot">Just say a number (e.g. “go with 4”) and I’ll set it as the site logo.</p>
+  </main>
+</body>
+</html>

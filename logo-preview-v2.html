@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logo Preview — Option A Modified | Lalana & Kartik</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cinzel:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #ECE5D8;
+      --warm-cream: #F3EBDD;
+      --gold: #D6A764;
+      --antique-gold: #A59566;
+      --maroon: #6D2424;
+      --text-dark: #3B261D;
+      --primary-blue: #B3CFDA;
+      --muted-blue: #9CBAC8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--warm-cream);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    header {
+      text-align: center;
+      padding: 48px 24px 28px;
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      color: var(--maroon);
+      letter-spacing: 0.08em;
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      margin: 0 0 10px;
+    }
+
+    header p {
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 1.12rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(109, 36, 36, 0.08);
+      color: var(--maroon);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    section {
+      background: rgba(255, 252, 247, 0.96);
+      border: 1px solid rgba(156, 186, 200, 0.55);
+      border-radius: 24px;
+      padding: 28px 28px 32px;
+      box-shadow: 0 16px 36px rgba(59, 38, 29, 0.08);
+    }
+
+    section h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      color: var(--maroon);
+      margin: 0 0 6px;
+      text-transform: uppercase;
+    }
+
+    section .note {
+      margin: 0 0 22px;
+      font-size: 1rem;
+      color: #5a4a3f;
+    }
+
+    /* ── Horizontal lockup: silhouette + L & K ──
+       --scale: 1 = nav size, 2 = large preview (exact 2×) ── */
+    .lk-lockup {
+      --scale: 1;
+      --silhouette-h: calc(56px * var(--scale));
+      --letter-size: calc(var(--silhouette-h) * 1.38);
+      --lockup-gap: calc(5px * var(--scale));
+      --letter-gap: calc(2px * var(--scale));
+      display: inline-flex;
+      align-items: center;
+      gap: var(--lockup-gap);
+      line-height: 1;
+      height: var(--silhouette-h);
+    }
+
+    .lk-lockup .silhouette {
+      display: block;
+      height: var(--silhouette-h);
+      width: auto;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 8px rgba(59, 38, 29, 0.35));
+    }
+
+    .lk-lockup .letters {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--letter-gap);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: var(--letter-size);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      user-select: none;
+      height: var(--silhouette-h);
+    }
+
+    .lk-lockup .letters .amp {
+      font-size: 0.52em;
+      line-height: 1;
+      margin: 0 calc(1px * var(--scale));
+      position: relative;
+      top: calc(2px * var(--scale));
+    }
+
+    /* ── Surface swatches ── */
+    .surfaces {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .surface {
+      border-radius: 16px;
+      padding: 28px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      border: 1px solid rgba(59, 38, 29, 0.08);
+    }
+
+    .surface--nav {
+      background: linear-gradient(180deg, var(--primary-blue) 0%, var(--muted-blue) 100%);
+      border: 2px solid var(--gold);
+    }
+
+    .surface--ivory { background: var(--ivory); }
+    .surface--cream { background: var(--warm-cream); }
+    .surface--white { background: #fff; }
+
+    .surface-label {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 0.92rem;
+      color: #5a4a3f;
+    }
+
+    .surface-wrap { text-align: center; }
+
+    /* ── Nav mockup (actual site dimensions) ── */
+    .nav-mock {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 72px;
+      padding: 0 160px 0 110px;
+      background: linear-gradient(180deg, var(--primary-blue) 0%, var(--muted-blue) 100%);
+      border: 2px solid var(--gold);
+      border-radius: 0;
+      box-shadow: 0 4px 22px rgba(59, 38, 29, 0.12);
+      position: relative;
+      overflow: visible;
+    }
+
+    .nav-mock .brand-slot {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 56px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-mock .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-mock .nav-links a {
+      color: var(--text-dark);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      text-decoration: none;
+      padding: 8px 14px;
+    }
+
+    .nav-mock .nav-links .sep {
+      color: var(--antique-gold);
+      opacity: 0.7;
+      font-size: 1.1rem;
+      padding: 0 8px;
+    }
+
+    /* ── Before / after ── */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) {
+      .compare { grid-template-columns: 1fr; }
+      .nav-mock { padding: 0 16px; }
+    }
+
+    .compare-card {
+      text-align: center;
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--ivory);
+    }
+
+    .compare-card img {
+      max-width: 200px;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    .compare-card .label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      color: var(--maroon);
+      text-transform: uppercase;
+    }
+
+    .specs {
+      margin: 0;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(179, 207, 218, 0.25);
+      font-size: 0.98rem;
+      list-style: none;
+    }
+
+    .specs li { padding: 4px 0; }
+    .specs strong { color: var(--maroon); font-weight: 600; }
+
+    .cta {
+      text-align: center;
+      font-size: 1.05rem;
+      color: #5a4a3f;
+      padding-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Logo Preview — Option A Modified</h1>
+    <p>Silhouette from Option A, with <strong>L &amp; K</strong> placed after the drawing at the same height. Transparent background — no ivory circle. Typography matches the nav.</p>
+    <span class="badge">Preview only — not yet on the live site</span>
+  </header>
+
+  <main>
+    <section>
+      <h2>Nav bar mockup</h2>
+      <p class="note">Actual nav height (72px). Logo silhouette is 56px tall — same proportion as the site’s 72×72 brand slot — with L &amp; K matching the drawing height.</p>
+      <div class="nav-mock">
+        <div class="brand-slot">
+          <div class="lk-lockup" style="--scale: 1">
+            <img class="silhouette" src="lk-silhouette-from-a.png" alt="L &amp; K"/>
+            <span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span>
+          </div>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li class="sep">|</li>
+          <li><a href="#">Our Story</a></li>
+          <li class="sep">|</li>
+          <li><a href="#">Events</a></li>
+          <li class="sep">|</li>
+          <li><a href="#">RSVP</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Large preview</h2>
+      <p class="note">Exactly 2× nav scale (112px silhouette). Same proportions as the mockup above — the colored panels show how the transparent logo reads on different surfaces.</p>
+      <div class="surfaces">
+        <div class="surface-wrap">
+          <div class="surface surface--nav">
+            <div class="lk-lockup" style="--scale: 2">
+              <img class="silhouette" src="lk-silhouette-from-a.png" alt="Lalana & Kartik dance silhouette"/>
+              <span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span>
+            </div>
+          </div>
+          <div class="surface-label">Nav blue gradient</div>
+        </div>
+        <div class="surface-wrap">
+          <div class="surface surface--ivory">
+            <div class="lk-lockup" style="--scale: 2">
+              <img class="silhouette" src="lk-silhouette-from-a.png" alt=""/>
+              <span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span>
+            </div>
+          </div>
+          <div class="surface-label">Ivory (page sections)</div>
+        </div>
+        <div class="surface-wrap">
+          <div class="surface surface--cream">
+            <div class="lk-lockup" style="--scale: 2">
+              <img class="silhouette" src="lk-silhouette-from-a.png" alt=""/>
+              <span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span>
+            </div>
+          </div>
+          <div class="surface-label">Warm cream (body)</div>
+        </div>
+        <div class="surface-wrap">
+          <div class="surface surface--white">
+            <div class="lk-lockup" style="--scale: 2">
+              <img class="silhouette" src="lk-silhouette-from-a.png" alt=""/>
+              <span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span>
+            </div>
+          </div>
+          <div class="surface-label">White</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Before &amp; after</h2>
+      <p class="note">Original Option A (ivory circle, gold letters flanking) vs. the modified horizontal lockup at nav scale.</p>
+      <div class="compare">
+        <div class="compare-card">
+          <div class="label">Original — Option A</div>
+          <img src="lk-logo-option-a.png" alt="Original Option A logo"/>
+        </div>
+        <div class="compare-card" style="background: linear-gradient(180deg, var(--primary-blue) 0%, var(--muted-blue) 100%); border: 2px solid var(--gold);">
+          <div class="label">Modified — transparent</div>
+          <div class="lk-lockup" style="--scale: 2.5; margin: 0 auto;">
+            <img class="silhouette" src="lk-silhouette-from-a.png" alt=""/>
+            <span class="letters"><span>L</span><span class="amp">&amp;</span><span>K</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Design specs</h2>
+      <ul class="specs">
+        <li><strong>Layout:</strong> [silhouette] L &amp; K — horizontal, letters after the drawing</li>
+        <li><strong>Background:</strong> fully transparent (no ivory circle, no gold ring)</li>
+        <li><strong>Silhouette:</strong> maroon from Option A (<code>#6D2424</code>)</li>
+        <li><strong>Letters:</strong> Cormorant Garamond, weight 600, color <code>#3B261D</code> — same as nav links</li>
+        <li><strong>Nav size:</strong> 56px silhouette height inside the 72px nav bar</li>
+        <li><strong>Height:</strong> L &amp; K cap height matches silhouette height</li>
+      </ul>
+    </section>
+
+    <p class="cta">Let me know if you'd like any tweaks — spacing, letter size, or silhouette scale — before I add this to the website.</p>
+  </main>
+</body>
+</html>
