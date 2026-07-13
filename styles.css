@@ -2704,6 +2704,10 @@ html.skip-splash .splash {
   margin-bottom: 18px;
 }
 
+.countdown-sub strong {
+  font-weight: 700;
+}
+
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
