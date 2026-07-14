@@ -330,7 +330,11 @@ html.skip-splash .splash {
   z-index: 10;
 }
 
-.mantra-img { width: 160px; display: block; }
+.mantra-img {
+  width: min(86vw, 320px);
+  height: auto;
+  display: block;
+}
 
 .royal-image-btn {
   position: absolute;
@@ -1632,7 +1636,7 @@ html.skip-splash .splash {
    MOBILE
 ========================================================= */
 @media (max-width: 768px) {
-  .mantra-img { width: 110px; }
+  .mantra-img { width: min(88vw, 240px); }
   .button-frame-img { width: 320px; }
   .button-text { font-size: 1.2rem; }
   .splash-sound-wrap { top: 16px; right: 16px; }
