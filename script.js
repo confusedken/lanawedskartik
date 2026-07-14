@@ -17,6 +17,7 @@ let siteMusicBtn = null;
 let audioPrefDialog = null;
 let audioPrefResolver = null;
 let audioPersistenceWired = false;
+let pausedByBackground = false;
 
 function getAudioPref() {
   return localStorage.getItem(AUDIO_PREF_KEY);
@@ -42,6 +43,8 @@ function saveAudioState() {
   const shouldTrack = getAudioPref() === "on";
   sessionStorage.setItem(AUDIO_STATE_KEY, JSON.stringify({
     playing: shouldTrack && !audio.paused,
+    // Keep wall-clock resume from advancing while we were background-paused.
+    pausedByBackground: Boolean(pausedByBackground),
     currentTime: audio.currentTime || 0,
     savedAt: Date.now(),
   }));
@@ -51,7 +54,8 @@ function getResumeTime(state, duration) {
   if (!state || typeof state.currentTime !== "number") return 0;
 
   let time = state.currentTime;
-  if (state.playing && state.savedAt) {
+  // Only advance for time spent truly playing in the foreground.
+  if (state.playing && !state.pausedByBackground && state.savedAt) {
     time += (Date.now() - state.savedAt) / 1000;
   }
 
@@ -66,7 +70,36 @@ function shouldResumeMusic() {
   if (getAudioPref() !== "on") return false;
   const state = getAudioState();
   if (!state) return false;
-  return state.playing === true || (typeof state.currentTime === "number" && state.currentTime > 0);
+  return (
+    state.playing === true ||
+    state.pausedByBackground === true ||
+    (typeof state.currentTime === "number" && state.currentTime > 0)
+  );
+}
+
+function pauseMusicForBackground() {
+  const audio = ensureSiteMusic();
+  if (getAudioPref() !== "on") return;
+  if (!audio || audio.paused) return;
+
+  pausedByBackground = true;
+  audio.pause();
+  // Keep preference "on" so we can resume when the tab returns.
+  saveAudioState();
+}
+
+async function resumeMusicForForeground() {
+  if (getAudioPref() !== "on") {
+    pausedByBackground = false;
+    return;
+  }
+  if (document.visibilityState !== "visible") return;
+
+  const shouldResume = pausedByBackground || shouldResumeMusic();
+  pausedByBackground = false;
+  if (!shouldResume) return;
+
+  await resumeSiteMusic();
 }
 
 function wireAudioPersistence() {
@@ -76,7 +109,10 @@ function wireAudioPersistence() {
   const audio = ensureSiteMusic();
   let lastSave = 0;
 
-  audio.addEventListener("play", saveAudioState);
+  audio.addEventListener("play", () => {
+    pausedByBackground = false;
+    saveAudioState();
+  });
   audio.addEventListener("timeupdate", () => {
     if (audio.paused) return;
     const now = Date.now();
@@ -86,10 +122,29 @@ function wireAudioPersistence() {
     }
   });
 
-  window.addEventListener("pagehide", saveAudioState);
+  window.addEventListener("pagehide", () => {
+    pauseMusicForBackground();
+    saveAudioState();
+  });
   window.addEventListener("beforeunload", saveAudioState);
   document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") saveAudioState();
+    if (document.visibilityState === "hidden") {
+      pauseMusicForBackground();
+    } else {
+      resumeMusicForForeground();
+    }
+  });
+  window.addEventListener("pageshow", () => {
+    resumeMusicForForeground();
+  });
+  window.addEventListener("focus", () => {
+    resumeMusicForForeground();
+  });
+  window.addEventListener("blur", () => {
+    // Cover cases where iOS doesn't fire visibilitychange promptly.
+    if (document.visibilityState === "hidden") {
+      pauseMusicForBackground();
+    }
   });
 
   document.addEventListener("click", (event) => {
@@ -262,6 +317,7 @@ async function startSiteMusic({ fresh = false } = {}) {
 
 function pauseSiteMusic() {
   const audio = ensureSiteMusic();
+  pausedByBackground = false;
   audio.pause();
   updateSiteMusicButton(true);
   setAudioPref("off");

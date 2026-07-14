@@ -1776,7 +1776,9 @@ html.skip-splash .splash {
 
   .subpage-script { font-size: 1.4rem; }
   .events-hero .subpage-telugu { font-size: 1.4rem; }
-  .events-page { padding: 50px 20px 80px; }
+  .events-page {
+    padding: 50px 20px calc(120px + env(safe-area-inset-bottom, 0px));
+  }
   .events-page::before {
     background-size: 520px 560px;
   }
@@ -1819,6 +1821,10 @@ html.skip-splash .splash {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
   background: var(--light-blue);
   border: 1px solid rgba(126, 81, 20, 0.22);
   border-left: 4px solid var(--muted-blue);
@@ -1826,6 +1832,9 @@ html.skip-splash .splash {
   font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
   padding: 8px 12px;
   border-radius: 10px;
   margin-bottom: 14px;
@@ -2087,10 +2096,16 @@ html.skip-splash .splash {
   }
 
   .event-meta {
-    font-size: 0.92rem;
+    font-size: 0.84rem;
     width: 100%;
     justify-content: center;
     text-align: center;
+    padding: 9px 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .event-info {
+    padding: 18px 16px 24px;
   }
 
   .family-panel h4 {
