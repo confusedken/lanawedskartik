@@ -324,15 +324,20 @@ html.skip-splash .splash {
 
 .mantra-wrapper {
   position: absolute;
-  top: 4%;
+  top: 3%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+  width: min(42vw, 190px);
+  max-width: calc(100vw - 32px);
+  pointer-events: none;
 }
 
 .mantra-img {
-  width: min(86vw, 320px);
+  width: 100%;
   height: auto;
+  max-height: min(12vh, 110px);
+  object-fit: contain;
   display: block;
 }
 
@@ -1636,7 +1641,13 @@ html.skip-splash .splash {
    MOBILE
 ========================================================= */
 @media (max-width: 768px) {
-  .mantra-img { width: min(88vw, 240px); }
+  .mantra-wrapper {
+    top: 2.5%;
+    width: min(52vw, 155px);
+  }
+  .mantra-img {
+    max-height: min(11vh, 90px);
+  }
   .button-frame-img { width: 320px; }
   .button-text { font-size: 1.2rem; }
   .splash-sound-wrap { top: 16px; right: 16px; }
