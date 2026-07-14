@@ -804,8 +804,10 @@ html.skip-splash .splash {
 .event-art img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center center;
   display: block;
+  background: var(--ivory);
 }
 
 .event-info {
@@ -1787,7 +1789,15 @@ html.skip-splash .splash {
   .chapter-telugu { font-size: 1.25rem; }
   .chapter-rule img { width: 130px; }
   .event-cards { grid-template-columns: 1fr; gap: 24px; }
-  .event-art { aspect-ratio: 16 / 11; }
+  .event-art {
+    /* Event illustrations are portrait (~4:5); avoid landscape crop on iPhone. */
+    aspect-ratio: 4 / 5;
+  }
+  .event-art img {
+    object-fit: contain;
+    object-position: center center;
+    background: var(--ivory);
+  }
   .event-card-v2 h3 { font-size: 1.5rem; }
   .event-desc { font-size: 1rem; }
 
