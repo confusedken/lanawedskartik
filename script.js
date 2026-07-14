@@ -696,6 +696,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function spawnPetal() {
+    const petal = document.createElement("span");
+    const isMarigold = Math.random() > 0.45;
+    petal.className = `petal ${isMarigold ? "petal-marigold" : "petal-rose"}`;
+    petal.style.left = `${Math.random() * 100}vw`;
+    petal.style.animationDuration = `${3.5 + Math.random() * 3}s`;
+    petal.style.animationDelay = `${Math.random() * 0.3}s`;
+    petal.style.setProperty("--drift", `${-30 + Math.random() * 60}px`);
+    petal.style.setProperty("--spin", `${Math.random() * 720 - 360}deg`);
+    document.body.appendChild(petal);
+    petal.addEventListener("animationend", () => petal.remove());
+  }
+
+  function triggerBlessings() {
+    const count = 36 + Math.floor(Math.random() * 16);
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => spawnPetal(), i * 40);
+    }
+  }
+
   if (skipSplash) {
     document.documentElement.classList.remove("splash-active");
     if (splash) splash.style.display = "none";
@@ -724,7 +744,9 @@ document.addEventListener("DOMContentLoaded", () => {
     enterBtn.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      enterWeddingSite();
+      enterWeddingSite().then(() => {
+        setTimeout(() => triggerBlessings(), 500);
+      });
     });
   }
 
@@ -823,27 +845,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fab.setAttribute("aria-label", "Send blessings");
     fab.innerHTML = "<span class=\"petal-fab-icon\">🌸</span><span class=\"petal-fab-label\">Blessings</span>";
 
-    fab.addEventListener("click", () => {
-      const count = 36 + Math.floor(Math.random() * 16);
-      for (let i = 0; i < count; i++) {
-        setTimeout(() => spawnPetal(), i * 40);
-      }
-    });
+    fab.addEventListener("click", () => triggerBlessings());
 
     document.body.appendChild(fab);
-  }
-
-  function spawnPetal() {
-    const petal = document.createElement("span");
-    const isMarigold = Math.random() > 0.45;
-    petal.className = `petal ${isMarigold ? "petal-marigold" : "petal-rose"}`;
-    petal.style.left = `${Math.random() * 100}vw`;
-    petal.style.animationDuration = `${3.5 + Math.random() * 3}s`;
-    petal.style.animationDelay = `${Math.random() * 0.3}s`;
-    petal.style.setProperty("--drift", `${-30 + Math.random() * 60}px`);
-    petal.style.setProperty("--spin", `${Math.random() * 720 - 360}deg`);
-    document.body.appendChild(petal);
-    petal.addEventListener("animationend", () => petal.remove());
   }
 
   initPetalShower();
