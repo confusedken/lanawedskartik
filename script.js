@@ -289,128 +289,24 @@ function setActiveNavFromUrl(url) {
   const current = url.pathname.split("/").pop() || "index.html";
   const onHome = current === "index.html" && (!url.hash || url.hash === "#main");
 
-  if (navMount) {
-    navMount.querySelectorAll(".nav-links a").forEach((link) => {
-      const linkPage = (link.getAttribute("href") || "").split("#")[0] || "index.html";
-      const isHomeLink = linkPage === "index.html";
-      link.classList.toggle("active", (onHome && isHomeLink) || (!onHome && linkPage === current));
-    });
-  }
+  if (!navMount) return;
 
-  document.querySelectorAll(".mobile-home-nav a").forEach((link) => {
+  navMount.querySelectorAll(".nav-links a").forEach((link) => {
     const linkPage = (link.getAttribute("href") || "").split("#")[0] || "index.html";
     const isHomeLink = linkPage === "index.html";
     link.classList.toggle("active", (onHome && isHomeLink) || (!onHome && linkPage === current));
   });
 }
 
-const MOBILE_FLOATING_NAV_LINKS = [
-  { href: "index.html#main", label: "Home" },
-  { href: "our-story.html", label: "Our Story" },
-  { href: "events.html", label: "Events" },
-  { href: "rsvp.html", label: "RSVP" },
-  { href: "gift-registry.html", label: "Gifts" },
-];
-
-function ensureMobileFloatingNav() {
-  let nav = document.querySelector(".mobile-home-nav");
-  if (nav) return nav;
-
-  nav = document.createElement("nav");
-  nav.className = "mobile-home-nav";
-  nav.setAttribute("aria-label", "Mobile navigation");
-  nav.innerHTML = MOBILE_FLOATING_NAV_LINKS.map(({ href, label }) =>
-    `<a href="${href}">${label}</a>`
-  ).join("");
-  document.body.appendChild(nav);
-  return nav;
-}
-
 function isMobileView() {
   return window.matchMedia("(max-width: 768px)").matches;
 }
 
-function ensureMobileBottomBar() {
-  let bar = document.getElementById("mobileBottomBar");
-  if (!bar) {
-    bar = document.createElement("div");
-    bar.id = "mobileBottomBar";
-    bar.className = "mobile-bottom-bar";
-    bar.setAttribute("aria-hidden", "true");
-    document.body.appendChild(bar);
-  }
-  return bar;
-}
-
-function dockMobileBottomBar(shouldShow) {
-  const bar = ensureMobileBottomBar();
-  const nav = document.querySelector(".mobile-home-nav") || ensureMobileFloatingNav();
-
-  if (!isMobileView() || !shouldShow) {
-    bar.classList.remove("is-visible");
-    bar.setAttribute("aria-hidden", "true");
-    if (nav.parentElement === bar) document.body.appendChild(nav);
-    return;
-  }
-
-  if (nav.parentElement !== bar) bar.appendChild(nav);
-  bar.classList.add("is-visible");
-  bar.setAttribute("aria-hidden", "false");
-}
-
-function updateMobileFloatingNavVisibility() {
-  const nav = document.querySelector(".mobile-home-nav");
-  if (!nav) return;
-
-  if (!isMobileView()) {
-    dockMobileBottomBar(false);
-    mountSiteMusicButtonInNav();
-    return;
-  }
-
+function wireMobileMusicButtonPlacement() {
   mountSiteMusicButtonInNav();
-
-  const footer = document.querySelector(".site-footer");
-  if (!footer) {
-    const docHeight = document.documentElement.scrollHeight;
-    const viewportBottom = window.scrollY + window.innerHeight;
-    const nearBottom = viewportBottom >= docHeight - 96;
-    dockMobileBottomBar(nearBottom);
-    return;
-  }
-
-  const footerRect = footer.getBoundingClientRect();
-  const revealBuffer = 80;
-  const footerNearView = footerRect.top <= window.innerHeight + revealBuffer;
-  const scrolledPastFooter = footerRect.bottom < 0;
-
-  dockMobileBottomBar(footerNearView && !scrolledPastFooter);
-}
-
-let mobileFloatingNavWired = false;
-
-function initMobileFloatingNav() {
-  ensureMobileFloatingNav();
-  setActiveNavFromUrl(new URL(location.href));
-
-  if (!mobileFloatingNavWired) {
-    mobileFloatingNavWired = true;
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        updateMobileFloatingNavVisibility();
-        ticking = false;
-      });
-    }, { passive: true });
-    window.addEventListener("resize", () => {
-      updateMobileFloatingNavVisibility();
-      mountSiteMusicButtonInNav();
-    });
-  }
-
-  updateMobileFloatingNavVisibility();
+  window.addEventListener("resize", () => {
+    mountSiteMusicButtonInNav();
+  });
 }
 
 function swapSiteContent(doc) {
@@ -429,6 +325,7 @@ function swapSiteContent(doc) {
   const splash = document.getElementById("splash");
   if (splash) {
     splash.classList.add("hidden");
+    document.documentElement.classList.remove("splash-active");
     document.body.style.overflow = "";
   }
 
@@ -513,7 +410,7 @@ function ensureAudioPrefDialog() {
     <div class="audio-pref-card">
       <div class="audio-pref-ornament"><img src="welcome_bar.png" alt=""></div>
       <h2 id="audioPrefTitle">Audio Experience</h2>
-      <p>Would you like to enjoy audio experience as you explore our wedding site?</p>
+      <p>Would you like to enjoy an audio experience as you explore our wedding site?</p>
       <div class="audio-pref-actions">
         <button type="button" class="audio-pref-btn audio-pref-btn-primary" id="audioPrefUnmute">Play with Music</button>
         <button type="button" class="audio-pref-btn audio-pref-btn-secondary" id="audioPrefMute">Continue Muted</button>
@@ -650,7 +547,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((res) => (res.ok ? res.text() : Promise.reject(res.status)))
       .then((html) => {
         footerMount.innerHTML = html;
-        updateMobileFloatingNavVisibility();
       })
       .catch((err) => console.log("Could not load footer partial:", err));
   }
@@ -732,7 +628,9 @@ document.addEventListener("DOMContentLoaded", () => {
   async function enterWeddingSite() {
     if (splash) splash.classList.add("hidden");
     if (video) { video.pause(); video.muted = true; }
+    document.documentElement.classList.remove("splash-active");
     document.body.style.overflow = "";
+    window.scrollTo(0, 0);
 
     setSiteMusicButtonVisible(true);
     if (getAudioPref() === "on") {
@@ -743,6 +641,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (skipSplash) {
+    document.documentElement.classList.remove("splash-active");
     if (splash) splash.style.display = "none";
     if (video) { video.pause(); video.muted = true; }
     initSiteAudio({ showButton: true, askIfNeeded: true });
@@ -801,7 +700,6 @@ document.addEventListener("DOMContentLoaded", () => {
     mountSiteMusicButtonInNav();
     setSiteMusicButtonVisible(true);
     setActiveNavFromUrl(new URL(location.href));
-    updateMobileFloatingNavVisibility();
     if (document.getElementById("cdDays")) {
       countdownTimer = null;
       initWeddingCountdown();
@@ -809,7 +707,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   wireSoftNavForMusic();
-  initMobileFloatingNav();
+  wireMobileMusicButtonPlacement();
+  setActiveNavFromUrl(new URL(location.href));
 
   // ---------- MOBILE SINGLE-SCROLL PAGE STITCHING ----------
   const mobilePages = document.getElementById("mobile-pages");
@@ -838,7 +737,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }, Promise.resolve()).then(() => {
         initReveal();
         initRSVPForm();
-        updateMobileFloatingNavVisibility();
       });
     };
 
@@ -877,7 +775,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.body.appendChild(fab);
-    updateMobileFloatingNavVisibility();
   }
 
   function spawnPetal() {
@@ -1022,7 +919,7 @@ async function submitRSVP(e) {
 
   const attending = form.querySelector('input[name="attending"]:checked')?.value;
   if (!attending) {
-    alert("Please select your response (Joyfully Joining or Sadly Regret).");
+    alert("Please select your response (Joyfully Joining or Regretfully Declining).");
     return;
   }
 

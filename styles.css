@@ -60,8 +60,31 @@ ul { list-style: none; }
   z-index: 100;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  min-height: -webkit-fill-available;
   overflow: hidden;
   transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+/* Lock page scroll and hide site content until Enter is tapped */
+html.splash-active,
+html.splash-active body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overscroll-behavior: none;
+}
+
+html.splash-active .site {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html.splash-active .petal-fab,
+html.splash-active .site-music-btn.mobile-float-action {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .splash.hidden {
@@ -528,12 +551,6 @@ html.skip-splash .splash {
   display: none;
 }
 
-/* Floating bottom pill nav for the mobile home screen — hidden on
-   desktop, where navigation lives in the hotspot layer instead. */
-.mobile-home-nav {
-  display: none;
-}
-
 /* =========================================================
    HOME SCREEN — full-width flattened image with hotspot nav
 ========================================================= */
@@ -678,10 +695,27 @@ html.skip-splash .splash {
 }
 
 .events-page {
+  position: relative;
   max-width: 1180px;
   margin: 0 auto;
   padding: 70px 32px 110px;
-  background: var(--cream);
+  background: transparent;
+  isolation: isolate;
+  overflow-x: clip;
+}
+
+.events-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: auto;
+  transform: none;
+  z-index: -1;
+  background-image: url("kolam-pattern-soft.png?v=31");
+  background-size: 760px 818px;
+  background-position: center top;
+  background-repeat: repeat;
+  pointer-events: none;
 }
 
 .events-intro {
@@ -1248,7 +1282,7 @@ html.skip-splash .splash {
 
 .rsvp-radio-group {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -1257,6 +1291,7 @@ html.skip-splash .splash {
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  min-width: 0;
   padding: 20px 14px;
   border: 1px solid rgba(127, 138, 101, 0.35);
   border-radius: 16px;
@@ -1616,74 +1651,6 @@ html.skip-splash .splash {
   }
   .desktop-hotspots { display: none; }
 
-  /* Floating bottom nav — fixed row aligned with side action buttons */
-  .mobile-bottom-bar {
-    position: fixed;
-    left: 50%;
-    bottom: 82px;
-    transform: translateX(-50%);
-    z-index: 80;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: calc(100% - 120px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.35s ease, visibility 0.35s;
-  }
-  .mobile-bottom-bar.is-visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-  .mobile-bottom-bar .mobile-home-nav {
-    position: static;
-    left: auto;
-    bottom: auto;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    flex: 0 1 auto;
-    max-width: 100%;
-  }
-
-  .mobile-home-nav {
-    display: none;
-    gap: 2px;
-    overflow-x: auto;
-    background: rgba(179, 207, 218, 0.96);
-    border: 1px solid var(--gold);
-    border-radius: 999px;
-    padding: 8px 10px;
-    box-shadow: 0 10px 30px rgba(59, 38, 29, 0.18);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  .mobile-bottom-bar .mobile-home-nav {
-    display: flex;
-  }
-  .mobile-home-nav a {
-    color: var(--text-dark);
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    padding: 8px 12px;
-    border-radius: 999px;
-    white-space: nowrap;
-    transition: background 0.2s, color 0.2s;
-  }
-  .mobile-home-nav a.active,
-  .mobile-home-nav a:hover {
-    background: var(--ivory);
-    color: var(--maroon);
-  }
-
-  /* Leave room at the bottom of stitched mobile pages for the footer + nav */
-  #mobile-pages { padding-bottom: 24px; }
-
   /* ---- MOBILE SINGLE-SCROLL (desktop pattern still works for tabs) ---- */
   .mobile-only { display: block; }
   .mobile-page-section { position: relative; }
@@ -1724,8 +1691,8 @@ html.skip-splash .splash {
   .site-music-btn.mobile-float-action:not(.is-hidden) {
     display: inline-flex;
     position: fixed;
-    left: 16px;
-    bottom: 82px;
+    left: max(16px, env(safe-area-inset-left, 0px));
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
     z-index: 80;
     width: auto;
     height: auto;
@@ -1801,13 +1768,18 @@ html.skip-splash .splash {
   .rsvp-page { padding: 50px 20px 80px; }
   .rsvp-container { padding: 26px 18px; border-radius: 22px; }
   .rsvp-checkboxes { grid-template-columns: 1fr; }
-  .rsvp-radio-group { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .radio-label { font-size: 0.95rem; }
+  .rsvp-radio-group { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .radio-label { font-size: 0.9rem; }
+  .radio-sub { font-size: 0.82rem; }
+  .radio-card { padding: 16px 10px; }
   .rsvp-submit { width: 100%; text-align: center; }
 
   .subpage-script { font-size: 1.4rem; }
   .events-hero .subpage-telugu { font-size: 1.4rem; }
   .events-page { padding: 50px 20px 80px; }
+  .events-page::before {
+    background-size: 520px 560px;
+  }
   .events-intro { font-size: 1.05rem; margin-bottom: 44px; }
   .event-chapter { margin-bottom: 56px; }
   .chapter-telugu { font-size: 1.25rem; }
@@ -2584,12 +2556,6 @@ html.skip-splash .splash {
   .toran-hang { display: none; }
   .elephant { display: none; }
   .wedding-date { white-space: normal; font-size: 0.82rem; }
-
-  .invitation-home .mobile-home-nav a.active,
-  .invitation-home .mobile-home-nav a:hover {
-    background: var(--ivory);
-    color: var(--maroon);
-  }
 }
 
 /* =========================================================
@@ -2615,7 +2581,7 @@ html.skip-splash .splash {
 
 .welcome-wedding {
   font-family: 'Cinzel', serif;
-  font-size: clamp(2.8rem, 7vw, 4.2rem);
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2623,7 +2589,9 @@ html.skip-splash .splash {
   line-height: 1;
   text-align: center;
   width: 100%;
+  max-width: 100%;
   margin: 0 0 12px;
+  overflow-wrap: anywhere;
 }
 
 .welcome-names {
@@ -2682,45 +2650,49 @@ html.skip-splash .splash {
 
 /* COUNTDOWN */
 .countdown-widget {
-  margin-top: 32px;
-  padding: 24px 20px;
+  margin-top: 36px;
+  width: 100%;
+  padding: 32px 28px 30px;
   background: rgba(255, 253, 249, 0.92);
   border: 1px solid rgba(156, 186, 200, 0.45);
-  border-radius: 20px;
+  border-radius: 24px;
+  text-align: center;
 }
 
 .countdown-label {
   font-family: 'Cinzel', serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--maroon);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .countdown-sub {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   color: var(--sage);
-  margin-bottom: 18px;
+  margin-bottom: 22px;
+  line-height: 1.4;
 }
 
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .countdown-unit {
   background: var(--ivory);
   border: 1px solid rgba(179, 207, 218, 0.5);
-  border-radius: 14px;
-  padding: 12px 8px;
+  border-radius: 16px;
+  padding: 16px 10px;
 }
 
 .countdown-num {
   display: block;
   font-family: 'Cinzel', serif;
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.85rem, 4.5vw, 2.5rem);
   font-weight: 600;
   color: var(--deep-orange);
   line-height: 1.1;
@@ -2729,7 +2701,7 @@ html.skip-splash .splash {
 .countdown-cap {
   display: block;
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-dark);
@@ -2740,8 +2712,8 @@ html.skip-splash .splash {
 /* FLOWER PETAL SHOWER */
 .petal-fab {
   position: fixed;
-  right: 22px;
-  bottom: 90px;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   z-index: 80;
   display: flex;
   align-items: center;
@@ -2803,17 +2775,40 @@ html.skip-splash .splash {
     padding: 32px 24px 36px;
   }
 
+  .countdown-widget {
+    padding: 24px 16px 22px;
+  }
+
+  .countdown-label {
+    font-size: 0.92rem;
+    letter-spacing: 0.1em;
+  }
+
+  .countdown-sub {
+    font-size: 1.02rem;
+  }
+
   .countdown-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .petal-fab {
-    right: 16px;
-    bottom: 82px;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
     padding: 10px 14px;
   }
 
   .petal-fab-label { display: none; }
 
   .rsvp-checkboxes { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 400px) {
+  .rsvp-radio-group {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-wedding {
+    letter-spacing: 0.04em;
+  }
 }
